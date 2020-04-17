@@ -31,19 +31,19 @@ public class PercentLayoutParamsData {
 
     public PercentLayoutParamsData(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PercentLayout);
-        radius = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_radius, 0);
-        shadowDx = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowDx, 0);
-        shadowDy = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowDy, 0);
-        shadowColor = a.getColor(R.styleable.PercentLayout_layout_shadowColor, 0x99999999);
-        shadowEvaluation = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowEvaluation, 0);
+        radius = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_radiusConstraintPercent, 0);
+        shadowDx = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowDxConstraintPercent, 0);
+        shadowDy = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowDyConstraintPercent, 0);
+        shadowColor = a.getColor(R.styleable.PercentLayout_layout_shadowColorConstraintPercent, 0x99999999);
+        shadowEvaluation = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowEvaluationConstraintPercent, 0);
 
-        layout_marginLeftPercent =a.getFloat(R.styleable.PercentLayout_layout_marginLeftPercent,0);
-        layout_marginRightPercent =a.getFloat(R.styleable.PercentLayout_layout_marginRightPercent,0);
-        layout_marginTopPercent =a.getFloat(R.styleable.PercentLayout_layout_marginTopPercent,0);
-        layout_marginBottomPercent =a.getFloat(R.styleable.PercentLayout_layout_marginBottomPercent,0);
+        layout_marginLeftPercent =a.getFloat(R.styleable.PercentLayout_layout_marginLeftConstraintPercent,0);
+        layout_marginRightPercent =a.getFloat(R.styleable.PercentLayout_layout_marginRightConstraintPercent,0);
+        layout_marginTopPercent =a.getFloat(R.styleable.PercentLayout_layout_marginTopConstraintPercent,0);
+        layout_marginBottomPercent =a.getFloat(R.styleable.PercentLayout_layout_marginBottomConstraintPercent,0);
 
-        layout_marginStartPercent=a.getFloat(R.styleable.PercentLayout_layout_marginStartPercent,0);
-        layout_marginEndPercent=a.getFloat(R.styleable.PercentLayout_layout_marginEndPercent,0);
+        layout_marginStartPercent=a.getFloat(R.styleable.PercentLayout_layout_marginStartConstraintPercent,0);
+        layout_marginEndPercent=a.getFloat(R.styleable.PercentLayout_layout_marginEndConstraintPercent,0);
 
         a.recycle();
         needClip = radius > 0;
