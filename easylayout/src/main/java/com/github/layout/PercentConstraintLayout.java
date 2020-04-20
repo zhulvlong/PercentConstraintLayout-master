@@ -54,6 +54,8 @@ public class PercentConstraintLayout extends ConstraintLayout {
 
 
         for (int i = 0, size = getChildCount(); i < size; i++) {
+            float widthPercent = 0;
+            float heightPercent = 0;
             float marginLeftPercent = 0;
             float marginRightPercent = 0;
             float marginTopPercent = 0;
@@ -65,6 +67,10 @@ public class PercentConstraintLayout extends ConstraintLayout {
             if (lp instanceof PercentLayoutParams && lp instanceof ConstraintLayout.LayoutParams) {
                 PercentLayoutParams elp = (PercentLayoutParams) lp;
                 PercentLayoutParamsData data = elp.getData();
+
+
+                widthPercent = data.layout_widthPercent;
+                heightPercent = data.layout_heightPercent;
 
 
                 if (data.layout_marginLeftPercent != 0) {
@@ -83,6 +89,13 @@ public class PercentConstraintLayout extends ConstraintLayout {
                 marginBottomPercent = data.layout_marginBottomPercent;
 
                 ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) v.getLayoutParams();
+                if (widthPercent != 0) {
+                    layoutParams.matchConstraintPercentWidth = widthPercent;
+                }
+                if (heightPercent != 0) {
+                    layoutParams.matchConstraintPercentHeight = heightPercent;
+                }
+
                 if (marginLeftPercent != 0) {
                     layoutParams.horizontalBias = (screenWidth * marginLeftPercent) / (float) (screenWidth - v.getMeasuredWidth());
                 } else if (marginRightPercent != 0) {
