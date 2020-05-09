@@ -49,76 +49,87 @@ public class PercentConstraintLayout extends ConstraintLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int screenWidth = View.MeasureSpec.getSize(widthMeasureSpec);
-        int screenHeight = View.MeasureSpec.getSize(heightMeasureSpec);
+
+        int screenWidthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int screenHeightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int screenHeight = MeasureSpec.getSize(heightMeasureSpec);
+        int childCount = getChildCount();
+
+        int paddingLeft = this.getPaddingLeft();
+        int paddingRight = this.getPaddingRight();
+        int paddingTop = this.getPaddingTop();
+        int paddingBottom = this.getPaddingBottom();
+
+        boolean flag = (paddingLeft == 0) && (paddingRight == 0) && (paddingTop == 0) && (paddingBottom == 0);
+
+        //如果PercentConstraintLayout 没有padding值,并且宽高都是固定大小或者mathParent
+        if (flag && screenWidthMode == MeasureSpec.EXACTLY && screenHeightMode == MeasureSpec.EXACTLY) {
+            for (int i = 0, size = childCount; i < size; i++) {
+                float widthPercent = 0;
+                float heightPercent = 0;
+                float marginLeftPercent = 0;
+                float marginRightPercent = 0;
+                float marginTopPercent = 0;
+                float marginBottomPercent = 0;
+
+                View childView = getChildAt(i);
+                ViewGroup.LayoutParams lp = childView.getLayoutParams();
+                int childViewWidth = childView.getMeasuredWidth();
+                int childViewHeight = childView.getMeasuredHeight();
+
+                if (lp instanceof PercentLayoutParams && lp instanceof ConstraintLayout.LayoutParams) {
+                    PercentLayoutParams elp = (PercentLayoutParams) lp;
+                    PercentLayoutParamsData data = elp.getData();
+
+                    widthPercent = data.layout_widthPercent;
+                    heightPercent = data.layout_heightPercent;
 
 
-        for (int i = 0, size = getChildCount(); i < size; i++) {
-            float widthPercent = 0;
-            float heightPercent = 0;
-            float marginLeftPercent = 0;
-            float marginRightPercent = 0;
-            float marginTopPercent = 0;
-            float marginBottomPercent = 0;
+                    if (data.layout_marginLeftPercent != 0) {
+                        marginLeftPercent = data.layout_marginLeftPercent;
+                    } else if (data.layout_marginStartPercent != 0) {
+                        marginLeftPercent = data.layout_marginStartPercent;
+                    }
 
-            View v = getChildAt(i);
-            ViewGroup.LayoutParams lp = v.getLayoutParams();
+                    if (data.layout_marginRightPercent != 0) {
+                        marginRightPercent = data.layout_marginRightPercent;
+                    } else if (data.layout_marginEndPercent != 0) {
+                        marginRightPercent = data.layout_marginEndPercent;
+                    }
 
-            if (lp instanceof PercentLayoutParams && lp instanceof ConstraintLayout.LayoutParams) {
-                PercentLayoutParams elp = (PercentLayoutParams) lp;
-                PercentLayoutParamsData data = elp.getData();
+                    marginTopPercent = data.layout_marginTopPercent;
+                    marginBottomPercent = data.layout_marginBottomPercent;
 
+                    ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) childView.getLayoutParams();
+                    if (widthPercent != 0) {
+                        layoutParams.matchConstraintPercentWidth = widthPercent;
+                        childViewWidth = (int) (screenWidth * widthPercent);
+                    }
+                    if (heightPercent != 0) {
+                        layoutParams.matchConstraintPercentHeight = heightPercent;
+                        childViewHeight = (int) (screenHeight * heightPercent);
+                    }
 
-                widthPercent = data.layout_widthPercent;
-                heightPercent = data.layout_heightPercent;
+                    if (marginLeftPercent != 0) {
+                        layoutParams.horizontalBias = (screenWidth * marginLeftPercent) / (float) (screenWidth - childViewWidth);
+                    } else if (marginRightPercent != 0) {
+                        layoutParams.horizontalBias = 1 - ((screenWidth * marginRightPercent) / (float) (screenWidth - childViewWidth));
+                    } else if (marginLeftPercent != 0 && marginRightPercent != 0) {
+                        layoutParams.horizontalBias = (screenWidth * marginLeftPercent) / (float) (screenWidth - childViewWidth);
+                    }
 
-
-                if (data.layout_marginLeftPercent != 0) {
-                    marginLeftPercent = data.layout_marginLeftPercent;
-                } else if (data.layout_marginStartPercent != 0) {
-                    marginLeftPercent = data.layout_marginStartPercent;
+                    if (marginTopPercent != 0) {
+                        layoutParams.verticalBias = (screenHeight * marginTopPercent) / (float) (screenHeight - childViewHeight);
+                    } else if (marginBottomPercent != 0) {
+                        layoutParams.verticalBias = 1 - (screenHeight * marginBottomPercent / (float) (screenHeight - childViewHeight));
+                    } else if (marginTopPercent != 0 && marginBottomPercent != 0) {
+                        layoutParams.verticalBias = (screenHeight * marginTopPercent) / (float) (screenHeight - childViewHeight);
+                    }
+                    childView.setLayoutParams(layoutParams);
                 }
-
-                if (data.layout_marginRightPercent != 0) {
-                    marginRightPercent = data.layout_marginRightPercent;
-                } else if (data.layout_marginEndPercent != 0) {
-                    marginRightPercent = data.layout_marginEndPercent;
-                }
-
-                marginTopPercent = data.layout_marginTopPercent;
-                marginBottomPercent = data.layout_marginBottomPercent;
-
-                ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) v.getLayoutParams();
-                if (widthPercent != 0) {
-                    layoutParams.matchConstraintPercentWidth = widthPercent;
-                }
-                if (heightPercent != 0) {
-                    layoutParams.matchConstraintPercentHeight = heightPercent;
-                }
-
-                if (marginLeftPercent != 0) {
-                    layoutParams.horizontalBias = (screenWidth * marginLeftPercent) / (float) (screenWidth - v.getMeasuredWidth());
-                } else if (marginRightPercent != 0) {
-                    layoutParams.horizontalBias = 1 - ((screenWidth * marginRightPercent) / (float) (screenWidth - v.getMeasuredWidth()));
-                } else if (marginLeftPercent != 0 && marginRightPercent != 0) {
-                    layoutParams.horizontalBias = (screenWidth * marginLeftPercent) / (float) (screenWidth - v.getMeasuredWidth());
-                }
-
-                if (marginTopPercent != 0) {
-                    layoutParams.verticalBias = (screenHeight * marginTopPercent) / (float) (screenHeight - v.getMeasuredHeight());
-                } else if (marginBottomPercent != 0) {
-                    layoutParams.verticalBias = 1 - (screenHeight * marginBottomPercent / (float) (screenHeight - v.getMeasuredHeight()));
-                } else if (marginTopPercent != 0 && marginBottomPercent != 0) {
-                    layoutParams.verticalBias = (screenHeight * marginTopPercent) / (float) (screenHeight - v.getMeasuredHeight());
-                }
-
-                v.setLayoutParams(layoutParams);
-
             }
-
         }
-
-
     }
 
     @Override
