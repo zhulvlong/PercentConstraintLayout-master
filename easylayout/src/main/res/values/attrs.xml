@@ -8,14 +8,14 @@
     <attr name="layout_shadowDyCP" format="dimension" /><!--阴影偏移Y-->
 
     <!--下面的这些百分比属性必须设置左右约束/上下约束才会生效-->
-    <attr name="layout_widthCP" format="float" />
-    <attr name="layout_heightCP" format="float" />
-    <attr name="layout_marginLeftCP" format="float" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
-    <attr name="layout_marginRightCP" format="float" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
-    <attr name="layout_marginStartCP" format="float" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
-    <attr name="layout_marginEndCP" format="float" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
-    <attr name="layout_marginTopCP" format="float" /><!--控件先对容器(ConstraintLayout)上边距和容器高度的百分比-->
-    <attr name="layout_marginBottomCP" format="float" /><!--控件先对容器(ConstraintLayout)下边距和容器高度的百分比-->
+    <attr name="layout_widthCP" format="string" />
+    <attr name="layout_heightCP" format="string" />
+    <attr name="layout_marginLeftCP" format="string" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
+    <attr name="layout_marginRightCP" format="string" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
+    <attr name="layout_marginStartCP" format="string" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
+    <attr name="layout_marginEndCP" format="string" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
+    <attr name="layout_marginTopCP" format="string" /><!--控件先对容器(ConstraintLayout)上边距和容器高度的百分比-->
+    <attr name="layout_marginBottomCP" format="string" /><!--控件先对容器(ConstraintLayout)下边距和容器高度的百分比-->
 
 
     <!--用统一一个EasyLayout，用于封装读取自定义属性-->

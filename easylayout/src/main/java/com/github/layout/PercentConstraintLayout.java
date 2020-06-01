@@ -50,10 +50,10 @@ public class PercentConstraintLayout extends ConstraintLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int screenWidthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int screenWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int screenHeightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int screenHeight = MeasureSpec.getSize(heightMeasureSpec);
+        int screenWidthMode = View.MeasureSpec.getMode(widthMeasureSpec);
+        int screenWidth = View.MeasureSpec.getSize(widthMeasureSpec);
+        int screenHeightMode = View.MeasureSpec.getMode(heightMeasureSpec);
+        int screenHeight = View.MeasureSpec.getSize(heightMeasureSpec);
         int childCount = getChildCount();
 
         int paddingLeft = this.getPaddingLeft();
@@ -64,7 +64,7 @@ public class PercentConstraintLayout extends ConstraintLayout {
         boolean flag = (paddingLeft == 0) && (paddingRight == 0) && (paddingTop == 0) && (paddingBottom == 0);
 
         //如果PercentConstraintLayout 没有padding值,并且宽高都是固定大小或者mathParent
-        if (flag && screenWidthMode == MeasureSpec.EXACTLY && screenHeightMode == MeasureSpec.EXACTLY) {
+        if (flag && screenWidthMode == View.MeasureSpec.EXACTLY && screenHeightMode == View.MeasureSpec.EXACTLY) {
             for (int i = 0, size = childCount; i < size; i++) {
                 float widthPercent = 0;
                 float heightPercent = 0;
@@ -126,9 +126,37 @@ public class PercentConstraintLayout extends ConstraintLayout {
                     } else if (marginTopPercent != 0 && marginBottomPercent != 0) {
                         layoutParams.verticalBias = (screenHeight * marginTopPercent) / (float) (screenHeight - childViewHeight);
                     }
+                    correctLayoutParams(layoutParams);
                     childView.setLayoutParams(layoutParams);
                 }
             }
+        }
+    }
+
+    private void correctLayoutParams(ConstraintLayout.LayoutParams layoutParams) {
+
+        if (layoutParams.matchConstraintPercentWidth < 0) {
+            layoutParams.matchConstraintPercentWidth = 0;
+        } else if (layoutParams.matchConstraintPercentWidth > 1) {
+            layoutParams.matchConstraintPercentWidth = 1;
+        }
+
+        if (layoutParams.matchConstraintPercentHeight < 0) {
+            layoutParams.matchConstraintPercentHeight = 0;
+        } else if (layoutParams.matchConstraintPercentHeight > 1) {
+            layoutParams.matchConstraintPercentHeight = 1;
+        }
+
+        if (layoutParams.horizontalBias < 0) {
+            layoutParams.horizontalBias = 0;
+        } else if (layoutParams.horizontalBias > 1) {
+            layoutParams.horizontalBias = 1;
+        }
+
+        if (layoutParams.verticalBias < 0) {
+            layoutParams.verticalBias = 0;
+        } else if (layoutParams.verticalBias > 1) {
+            layoutParams.verticalBias = 1;
         }
     }
 
