@@ -39,16 +39,15 @@ public class PercentLayoutParamsData {
         shadowColor = a.getColor(R.styleable.PercentLayout_layout_shadowColorCP, 0x99999999);
         shadowEvaluation = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowEvaluationCP, 0);
 
-        layout_widthPercent =a.getFloat(R.styleable.PercentLayout_layout_widthCP,0);
-        layout_heightPercent =a.getFloat(R.styleable.PercentLayout_layout_heightCP,0);
 
-        layout_marginLeftPercent =a.getFloat(R.styleable.PercentLayout_layout_marginLeftCP,0);
-        layout_marginRightPercent =a.getFloat(R.styleable.PercentLayout_layout_marginRightCP,0);
-        layout_marginTopPercent =a.getFloat(R.styleable.PercentLayout_layout_marginTopCP,0);
-        layout_marginBottomPercent =a.getFloat(R.styleable.PercentLayout_layout_marginBottomCP,0);
-
-        layout_marginStartPercent=a.getFloat(R.styleable.PercentLayout_layout_marginStartCP,0);
-        layout_marginEndPercent=a.getFloat(R.styleable.PercentLayout_layout_marginEndCP,0);
+        layout_widthPercent = getPercent(a, R.styleable.PercentLayout_layout_widthCP);
+        layout_heightPercent = getPercent(a, R.styleable.PercentLayout_layout_heightCP);
+        layout_marginLeftPercent = getPercent(a, R.styleable.PercentLayout_layout_marginLeftCP);
+        layout_marginRightPercent = getPercent(a, R.styleable.PercentLayout_layout_marginRightCP);
+        layout_marginTopPercent = getPercent(a, R.styleable.PercentLayout_layout_marginTopCP);
+        layout_marginBottomPercent = getPercent(a, R.styleable.PercentLayout_layout_marginBottomCP);
+        layout_marginStartPercent = getPercent(a, R.styleable.PercentLayout_layout_marginStartCP);
+        layout_marginEndPercent = getPercent(a, R.styleable.PercentLayout_layout_marginEndCP);
 
         a.recycle();
         needClip = radius > 0;
@@ -100,5 +99,15 @@ public class PercentLayoutParamsData {
                 radius,
                 Path.Direction.CW
         );
+    }
+
+    private static float getPercent(TypedArray array, int index) {
+        float percent = 0;
+        String percentStr = array.getString(index);
+        if (percentStr != null && percentStr.contains("/")) {
+            String[] split = percentStr.split("/");
+            percent = Float.valueOf(split[0]) / Float.valueOf(split[1]);
+        }
+        return percent;
     }
 }
