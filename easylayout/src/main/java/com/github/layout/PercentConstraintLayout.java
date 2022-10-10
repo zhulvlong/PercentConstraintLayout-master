@@ -172,7 +172,7 @@ public class PercentConstraintLayout extends ConstraintLayout {
                 PercentLayoutParamsData data = elp.getData();
                 data.initPaths(v);
                 ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) lp;
-
+                v.setLayoutParams(layoutParams);
             }
 
         }
