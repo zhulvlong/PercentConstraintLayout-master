@@ -1,18 +1,16 @@
 package com.github.layout;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class PercentConstraintLayout extends ConstraintLayout {
     private Paint shadowPaint;
@@ -38,94 +36,46 @@ public class PercentConstraintLayout extends ConstraintLayout {
 
     @Override
     public ConstraintLayout.LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new LayoutParams(getContext(), attrs);
+        return new PercentLayoutParams(getContext(), attrs);
     }
 
     @Override
-    protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
-        return p instanceof LayoutParams;
+    protected boolean checkLayoutParams(ViewGroup.LayoutParams lp) {
+        return lp instanceof PercentLayoutParams;
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int screenWidthMode = View.MeasureSpec.getMode(widthMeasureSpec);
-        int screenWidth = View.MeasureSpec.getSize(widthMeasureSpec);
-        int screenHeightMode = View.MeasureSpec.getMode(heightMeasureSpec);
-        int screenHeight = View.MeasureSpec.getSize(heightMeasureSpec);
+        int parentWidth = View.MeasureSpec.getSize(widthMeasureSpec);
+        int parentHeight = View.MeasureSpec.getSize(heightMeasureSpec);
         int childCount = getChildCount();
+        int paddingLeft = getPaddingLeft() != 0 ? getPaddingLeft() : getPaddingStart();
+        int paddingRight = getPaddingRight() != 0 ? getPaddingRight() : getPaddingEnd();
+        int paddingTop = getPaddingTop();
+        int paddingBottom = getPaddingBottom();
 
-        int paddingLeft = this.getPaddingLeft();
-        int paddingRight = this.getPaddingRight();
-        int paddingTop = this.getPaddingTop();
-        int paddingBottom = this.getPaddingBottom();
-
-        boolean flag = (paddingLeft == 0) && (paddingRight == 0) && (paddingTop == 0) && (paddingBottom == 0);
-
-        //如果PercentConstraintLayout 没有padding值,并且宽高都是固定大小或者mathParent
-        if (flag && screenWidthMode == View.MeasureSpec.EXACTLY && screenHeightMode == View.MeasureSpec.EXACTLY) {
+        boolean flag = View.MeasureSpec.getMode(widthMeasureSpec) == View.MeasureSpec.EXACTLY && View.MeasureSpec.getMode(heightMeasureSpec) == View.MeasureSpec.EXACTLY;
+        //如果PercentConstraintLayout宽高都是固定大小或者mathParent
+        if (flag) {
             for (int i = 0, size = childCount; i < size; i++) {
-                float widthPercent = 0;
-                float heightPercent = 0;
-                float marginLeftPercent = 0;
-                float marginRightPercent = 0;
-                float marginTopPercent = 0;
-                float marginBottomPercent = 0;
-
+                ChildViewCustomParams childViewParams = new ChildViewCustomParams();
                 View childView = getChildAt(i);
                 ViewGroup.LayoutParams lp = childView.getLayoutParams();
                 int childViewWidth = childView.getMeasuredWidth();
                 int childViewHeight = childView.getMeasuredHeight();
-
-                if (lp instanceof PercentLayoutParams && lp instanceof ConstraintLayout.LayoutParams) {
+                if (checkLayoutParams(lp)) {
                     PercentLayoutParams elp = (PercentLayoutParams) lp;
-                    PercentLayoutParamsData data = elp.getData();
-
-                    widthPercent = data.layout_widthPercent;
-                    heightPercent = data.layout_heightPercent;
-
-
-                    if (data.layout_marginLeftPercent != 0) {
-                        marginLeftPercent = data.layout_marginLeftPercent;
-                    } else if (data.layout_marginStartPercent != 0) {
-                        marginLeftPercent = data.layout_marginStartPercent;
-                    }
-
-                    if (data.layout_marginRightPercent != 0) {
-                        marginRightPercent = data.layout_marginRightPercent;
-                    } else if (data.layout_marginEndPercent != 0) {
-                        marginRightPercent = data.layout_marginEndPercent;
-                    }
-
-                    marginTopPercent = data.layout_marginTopPercent;
-                    marginBottomPercent = data.layout_marginBottomPercent;
-
+                    childViewParams.initParams(elp.getData());
                     ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) childView.getLayoutParams();
-                    if (widthPercent != 0) {
-                        layoutParams.matchConstraintPercentWidth = widthPercent;
-                        childViewWidth = (int) (screenWidth * widthPercent);
-                    }
-                    if (heightPercent != 0) {
-                        layoutParams.matchConstraintPercentHeight = heightPercent;
-                        childViewHeight = (int) (screenHeight * heightPercent);
-                    }
 
-                    if (marginLeftPercent != 0) {
-                        layoutParams.horizontalBias = (screenWidth * marginLeftPercent) / (float) (screenWidth - childViewWidth);
-                    } else if (marginRightPercent != 0) {
-                        layoutParams.horizontalBias = 1 - ((screenWidth * marginRightPercent) / (float) (screenWidth - childViewWidth));
-                    } else if (marginLeftPercent != 0 && marginRightPercent != 0) {
-                        layoutParams.horizontalBias = (screenWidth * marginLeftPercent) / (float) (screenWidth - childViewWidth);
-                    }
+                    childViewWidth = setWidthPercent(parentWidth, childViewParams, childViewWidth, layoutParams);
+                    childViewHeight = setHeightPercent(parentHeight, childViewParams, childViewHeight, layoutParams);
 
-                    if (marginTopPercent != 0) {
-                        layoutParams.verticalBias = (screenHeight * marginTopPercent) / (float) (screenHeight - childViewHeight);
-                    } else if (marginBottomPercent != 0) {
-                        layoutParams.verticalBias = 1 - (screenHeight * marginBottomPercent / (float) (screenHeight - childViewHeight));
-                    } else if (marginTopPercent != 0 && marginBottomPercent != 0) {
-                        layoutParams.verticalBias = (screenHeight * marginTopPercent) / (float) (screenHeight - childViewHeight);
-                    }
+                    setHorizontalMarginPercent(parentWidth, childViewParams, childViewWidth, layoutParams, paddingLeft, paddingRight);
+                    setVerticalMarginPercent(parentHeight, childViewParams, childViewHeight, layoutParams, paddingTop, paddingBottom);
+
                     correctLayoutParams(layoutParams);
                     childView.setLayoutParams(layoutParams);
                 }
@@ -133,8 +83,56 @@ public class PercentConstraintLayout extends ConstraintLayout {
         }
     }
 
-    private void correctLayoutParams(ConstraintLayout.LayoutParams layoutParams) {
+    private void setVerticalMarginPercent(int screenHeight, ChildViewCustomParams childViewParams, int childViewHeight,
+        LayoutParams layoutParams, int paddingTop, int paddingBottom) {
+        if (childViewParams.marginTopPercent != 0 && childViewParams.marginBottomPercent == 0) {
+            layoutParams.verticalBias = (paddingTop + screenHeight * childViewParams.marginTopPercent) / (float) (screenHeight - childViewHeight);
+        } else if (childViewParams.marginTopPercent == 0 && childViewParams.marginBottomPercent != 0) {
+            layoutParams.verticalBias = 1 - (paddingBottom + screenHeight * childViewParams.marginBottomPercent / (float) (screenHeight - childViewHeight));
+        } else if (childViewParams.marginTopPercent != 0 && childViewParams.marginBottomPercent != 0) {
+            layoutParams.matchConstraintPercentHeight = 1 - ((float) (paddingTop + screenHeight * childViewParams.marginTopPercent + paddingBottom + screenHeight * childViewParams.marginBottomPercent) / (float) screenHeight);
+            childViewHeight = (int) (screenHeight * layoutParams.matchConstraintPercentHeight);
+            layoutParams.verticalBias = (paddingTop + screenHeight * childViewParams.marginTopPercent) / (float) (screenHeight - childViewHeight);
+        }
+    }
 
+    private void setHorizontalMarginPercent(int screenWidth, ChildViewCustomParams childViewParams, int childViewWidth,
+        LayoutParams layoutParams, int paddingLeft, int paddingRight) {
+        if (childViewParams.marginLeftPercent != 0 && childViewParams.marginRightPercent == 0) {
+            layoutParams.horizontalBias = (paddingLeft + screenWidth * childViewParams.marginLeftPercent) / (float) (screenWidth - childViewWidth);
+        } else if (childViewParams.marginLeftPercent == 0 && childViewParams.marginRightPercent != 0) {
+            layoutParams.horizontalBias = 1 - ((paddingRight + screenWidth * childViewParams.marginRightPercent) / (float) (screenWidth - childViewWidth));
+        } else if (childViewParams.marginLeftPercent != 0 && childViewParams.marginRightPercent != 0) {
+            layoutParams.matchConstraintPercentWidth = 1 - ((float) (paddingLeft + screenWidth * childViewParams.marginLeftPercent + paddingRight + screenWidth * childViewParams.marginRightPercent) / (float) screenWidth);
+            childViewWidth = (int) (screenWidth * layoutParams.matchConstraintPercentWidth);
+            layoutParams.horizontalBias = (paddingLeft + screenWidth * childViewParams.marginLeftPercent) / (float) (screenWidth - childViewWidth);
+        }
+    }
+
+    private int setHeightPercent(int screenHeight, ChildViewCustomParams childViewParams, int childViewHeight, LayoutParams layoutParams) {
+        if (childViewParams.heightPercent != 0) {
+            layoutParams.matchConstraintPercentHeight = childViewParams.heightPercent;
+            childViewHeight = (int) (screenHeight * layoutParams.matchConstraintPercentHeight);
+        } else if (childViewParams.marginTopPercent != 0 && childViewParams.marginBottomPercent != 0) {
+            layoutParams.matchConstraintPercentHeight = 1 - childViewParams.marginTopPercent - childViewParams.marginBottomPercent;
+            childViewHeight = (int) (screenHeight * layoutParams.matchConstraintPercentHeight);
+        }
+        return childViewHeight;
+    }
+
+    private int setWidthPercent(int screenWidth, ChildViewCustomParams childViewParams, int childViewWidth, LayoutParams layoutParams) {
+        if (childViewParams.widthPercent != 0) {
+            layoutParams.matchConstraintPercentWidth = childViewParams.widthPercent;
+            childViewWidth = (int) (screenWidth * layoutParams.matchConstraintPercentWidth);
+        } else if (childViewParams.marginLeftPercent != 0 && childViewParams.marginRightPercent != 0) {
+            layoutParams.matchConstraintPercentWidth = 1 - childViewParams.marginLeftPercent - childViewParams.marginRightPercent;
+            childViewWidth = (int) (screenWidth * layoutParams.matchConstraintPercentWidth);
+        }
+        return childViewWidth;
+    }
+
+
+    private void correctLayoutParams(ConstraintLayout.LayoutParams layoutParams) {
         if (layoutParams.matchConstraintPercentWidth < 0) {
             layoutParams.matchConstraintPercentWidth = 0;
         } else if (layoutParams.matchConstraintPercentWidth > 1) {
@@ -167,14 +165,13 @@ public class PercentConstraintLayout extends ConstraintLayout {
             View v = getChildAt(i);
             ViewGroup.LayoutParams lp = v.getLayoutParams();
 
-            if (lp instanceof PercentLayoutParams && lp instanceof ConstraintLayout.LayoutParams) {
+            if (checkLayoutParams(lp)) {
                 PercentLayoutParams elp = (PercentLayoutParams) lp;
                 PercentLayoutParamsData data = elp.getData();
                 data.initPaths(v);
                 ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) lp;
                 v.setLayoutParams(layoutParams);
             }
-
         }
     }
 
@@ -182,7 +179,7 @@ public class PercentConstraintLayout extends ConstraintLayout {
     protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
         ViewGroup.LayoutParams lp = child.getLayoutParams();
         boolean ret = false;
-        if (lp instanceof PercentLayoutParams) {
+        if (checkLayoutParams(lp)) {
             PercentLayoutParams elp = (PercentLayoutParams) lp;
             PercentLayoutParamsData data = elp.getData();
             if (isInEditMode()) {//预览模式采用裁剪
@@ -192,8 +189,9 @@ public class PercentConstraintLayout extends ConstraintLayout {
                 canvas.restore();
                 return ret;
             }
-            if (!data.hasShadow && !data.needClip)
+            if (!data.hasShadow && !data.needClip) {
                 return super.drawChild(canvas, child, drawingTime);
+            }
             //为解决锯齿问题，正式环境采用xfermode
             if (data.hasShadow) {
                 int count = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
@@ -219,38 +217,4 @@ public class PercentConstraintLayout extends ConstraintLayout {
         }
         return ret;
     }
-
-    static class LayoutParams extends ConstraintLayout.LayoutParams implements PercentLayoutParams {
-
-        private PercentLayoutParamsData data;
-
-        public LayoutParams(Context c, AttributeSet attrs) {
-            super(c, attrs);
-            data = new PercentLayoutParamsData(c, attrs);
-        }
-
-        @Override
-        public PercentLayoutParamsData getData() {
-            return data;
-        }
-    }
-
-    public static boolean isStatusBarShown(Activity context) {
-        WindowManager.LayoutParams params = context.getWindow().getAttributes();
-        int paramsFlag = params.flags & (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        Log.i("zhulvlong", paramsFlag == params.flags ? "显示状态栏" : "隐藏状态栏");
-        return paramsFlag == params.flags;
-    }
-
-    public static int getStatusBarHeight(Activity context) {
-        int result = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height",
-                "dimen", "android");
-        if (resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
-        }
-        Log.i("zhulvlong", "状态栏高度" + result);
-        return result;
-    }
-
 }
