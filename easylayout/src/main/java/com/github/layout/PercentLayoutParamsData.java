@@ -11,7 +11,11 @@ import com.github.layout.R;
 
 
 public class PercentLayoutParamsData {
-    int radius;
+
+    /**
+     * 圆角
+     */
+    private final float[] rounds;
     int shadowColor;
     int shadowDx;
     int shadowDy;
@@ -33,12 +37,15 @@ public class PercentLayoutParamsData {
 
     public PercentLayoutParamsData(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PercentLayout);
-        radius = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_radiusCP, 0);
+        int radius = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_radiusCP, 0);
+        float roundLT = a.getDimension(R.styleable.PercentLayout_layout_radiusLeftTopCP, 0);
+        float roundRT = a.getDimension(R.styleable.PercentLayout_layout_radiusRightTopCP, 0);
+        float roundRB = a.getDimension(R.styleable.PercentLayout_layout_radiusRightBottomCP, 0);
+        float roundLB = a.getDimension(R.styleable.PercentLayout_layout_radiusLeftBottomCP, 0);
         shadowDx = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowDxCP, 0);
         shadowDy = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowDyCP, 0);
         shadowColor = a.getColor(R.styleable.PercentLayout_layout_shadowColorCP, 0x99999999);
         shadowEvaluation = a.getDimensionPixelOffset(R.styleable.PercentLayout_layout_shadowEvaluationCP, 0);
-
 
         layout_widthPercent = getPercent(a, R.styleable.PercentLayout_layout_widthCP);
         layout_heightPercent = getPercent(a, R.styleable.PercentLayout_layout_heightCP);
@@ -50,32 +57,43 @@ public class PercentLayoutParamsData {
         layout_marginEndPercent = getPercent(a, R.styleable.PercentLayout_layout_marginEndCP);
 
         a.recycle();
-        needClip = radius > 0;
+        if (radius > 0 || roundLT > 0 || roundRT > 0 || roundRB > 0 || roundLB > 0) {
+            needClip = radius > 0 || roundLT > 0 || roundRT > 0 || roundRB > 0 || roundLB > 0;
+        }
+        if (radius > 0 && (roundLT == 0 || roundRT == 0 || roundRB == 0 || roundLB == 0)) {
+            rounds = new float[]{
+                    radius, radius,
+                    radius, radius,
+                    radius, radius,
+                    radius, radius
+            };
+        } else if (radius > 0 && (roundLT > 0 || roundRT > 0 || roundRB > 0 || roundLB > 0)) {
+            float lt = roundLT > 0 ? roundLT : radius;
+            float rt = roundRT > 0 ? roundRT : radius;
+            float rb = roundRB > 0 ? roundRB : radius;
+            float lb = roundLB > 0 ? roundLB : radius;
+            rounds = new float[]{
+                    lt, lt,
+                    rt, rt,
+                    rb, rb,
+                    lb, lb
+            };
+        } else if (radius == 0 && (roundLT > 0 || roundRT > 0 || roundRB > 0 || roundLB > 0)) {
+            rounds = new float[]{
+                    roundLT, roundLT,
+                    roundRT, roundRT,
+                    roundRB, roundRB,
+                    roundLB, roundLB
+            };
+        } else {
+            rounds = new float[]{
+                    0, 0,
+                    0, 0,
+                    0, 0,
+                    0, 0
+            };
+        }
         hasShadow = shadowEvaluation > 0;
-    }
-
-    public void initPath(View v) {
-        widgetRect = new RectF(v.getLeft(),
-                v.getTop(),
-                v.getRight(),
-                v.getBottom());
-
-        widgetPath = new Path();
-        clipPath = new Path();
-        clipPath.addRect(widgetRect, Path.Direction.CCW);
-        clipPath.addRoundRect(
-                widgetRect,
-                radius,
-                radius,
-                Path.Direction.CW
-        );
-        widgetPath.addRoundRect(
-                widgetRect,
-                radius,
-                radius,
-                Path.Direction.CW
-        );
-
     }
 
     public void initPaths(View v) {
@@ -89,14 +107,12 @@ public class PercentLayoutParamsData {
         clipPath.addRect(widgetRect, Path.Direction.CCW);
         clipPath.addRoundRect(
                 widgetRect,
-                radius,
-                radius,
+                rounds,
                 Path.Direction.CW
         );
         widgetPath.addRoundRect(
                 widgetRect,
-                radius,
-                radius,
+                rounds,
                 Path.Direction.CW
         );
     }
