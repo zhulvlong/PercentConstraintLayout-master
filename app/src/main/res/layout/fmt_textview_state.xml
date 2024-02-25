@@ -1,0 +1,174 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rtv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubTextView
+            android:id="@+id/text1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="背景\n变色"
+            android:textColor="@android:color/white"
+            rtv:sub_background_normal="@color/colorPrimary"
+            rtv:sub_background_pressed="#FF450F21"
+            rtv:sub_border_color_normal="@color/colorAccent"
+            rtv:sub_border_width_normal="3dp"
+            rtv:sub_corner_radius="10dp" />
+
+        <com.github.layout.SubTextView
+            android:id="@+id/text2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="背景+边框\n变色"
+            android:textColor="@android:color/white"
+            rtv:sub_background_normal="@color/colorPrimary"
+            rtv:sub_background_pressed="#FF450F21"
+            rtv:sub_border_color_normal="@color/colorAccent"
+            rtv:sub_border_color_pressed="@color/colorPrimary"
+            rtv:sub_border_width_normal="3dp"
+            rtv:sub_corner_radius="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubTextView
+            android:id="@+id/text4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="边框\n变色"
+            android:textColor="@color/colorPrimary"
+            rtv:sub_border_color_normal="@color/colorPrimary"
+            rtv:sub_border_color_pressed="@color/colorAccent"
+            rtv:sub_border_dash_gap="1dp"
+            rtv:sub_border_dash_width="8dp"
+            rtv:sub_border_width_normal="3dp"
+            rtv:sub_corner_radius="10dp" />
+
+        <com.github.layout.SubTextView
+            android:id="@+id/text5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="边框+文字\n变色"
+            android:textColor="@color/colorPrimary"
+            rtv:sub_border_color_normal="@color/colorPrimary"
+            rtv:sub_border_color_pressed="@color/colorAccent"
+            rtv:sub_border_dash_gap="8dp"
+            rtv:sub_border_dash_width="8dp"
+            rtv:sub_border_width_normal="3dp"
+            rtv:sub_corner_radius="50dp"
+            rtv:sub_text_color_pressed="@color/colorAccent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubTextView
+            android:id="@+id/text3"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="背景/边框/文字\n变色"
+            android:textColor="@android:color/white"
+            rtv:sub_background_normal="@color/colorPrimary"
+            rtv:sub_background_pressed="#FF450F21"
+            rtv:sub_border_color_normal="@color/colorAccent"
+            rtv:sub_border_color_pressed="@color/colorPrimary"
+            rtv:sub_border_width_normal="3dp"
+            rtv:sub_corner_radius="10dp"
+            rtv:sub_text_color_pressed="@color/colorPrimary" />
+
+        <com.github.layout.SubTextView
+            android:id="@+id/text6"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="背景/边框/文字/图片\n变色"
+            android:textColor="@android:color/white"
+            rtv:sub_background_normal="@color/colorPrimary"
+            rtv:sub_background_pressed="#FF450F21"
+            rtv:sub_border_color_normal="@color/colorAccent"
+            rtv:sub_border_color_pressed="@color/colorPrimary"
+            rtv:sub_border_width_normal="3dp"
+            rtv:sub_corner_radius="10dp"
+            rtv:sub_icon_direction="top"
+            rtv:sub_icon_height="30dp"
+            rtv:sub_icon_src_normal="@mipmap/icon_phone_normal"
+            rtv:sub_icon_src_pressed="@mipmap/icon_phone_pressed"
+            rtv:sub_icon_width="30dp"
+            rtv:sub_text_color_pressed="@color/colorPrimary" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubTextView
+            android:id="@+id/text7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="原生背景图片"
+            android:textColor="#ff23dd" />
+
+    </LinearLayout>
+
+    <com.github.layout.SubTextView
+        android:id="@+id/text8"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:drawablePadding="6dp"
+        android:gravity="center"
+        android:text="图片文本一起居中"
+        android:textColor="@color/colorPrimary"
+        rtv:sub_border_color_normal="@color/colorPrimary"
+        rtv:sub_border_width_normal="2dp"
+        rtv:sub_icon_direction="left"
+        rtv:sub_icon_height="20dp"
+        rtv:sub_icon_src_normal="@mipmap/icon_phone_pressed"
+        rtv:sub_icon_width="20dp"
+        rtv:sub_icon_with_text="true" />
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <com.github.layout.SubLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:sub_background_normal="#fff"
+        app:sub_corner_radius="4dp">
+
+        <com.github.layout.SubView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            app:sub_background_normal="#ff0f9d58"
+            app:sub_corner_radius_bottom_left="4dp"
+            app:sub_corner_radius_top_left="4dp" />
+
+    </com.github.layout.SubLinearLayout>
+
+    <com.github.layout.SubLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        app:sub_background_normal="#fff"
+        app:sub_corner_radius="4dp">
+
+        <com.github.layout.SubView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            app:sub_background_normal="#ffff9800"
+            app:sub_corner_radius_bottom_left="4dp"
+            app:sub_corner_radius_top_left="4dp" />
+
+    </com.github.layout.SubLinearLayout>
+
+    <com.github.layout.SubLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        app:sub_background_normal="#fff"
+        app:sub_corner_radius="4dp">
+
+        <com.github.layout.SubView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            app:sub_background_normal="#ff8bc34a"
+            app:sub_corner_radius_bottom_left="4dp"
+            app:sub_corner_radius_top_left="4dp" />
+
+    </com.github.layout.SubLinearLayout>
+
+    <com.github.layout.SubLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        app:sub_background_normal="#fff"
+        app:sub_corner_radius="4dp">
+
+        <com.github.layout.SubView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            app:sub_background_normal="#ffff5722"
+            app:sub_corner_radius_bottom_left="4dp"
+            app:sub_corner_radius_top_left="4dp" />
+
+    </com.github.layout.SubLinearLayout>
+
+</LinearLayout>

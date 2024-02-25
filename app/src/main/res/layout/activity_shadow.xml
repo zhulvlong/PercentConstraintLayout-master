@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="shadow(阴影效果)" />
+
+    <com.github.layout.SubLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="vertical"
+        app:sub_background_normal="@android:color/white"
+        app:sub_corner_radius="10dp"
+        app:sub_shadow_color="#DF23DF"
+        app:sub_shadow_dx="5dp"
+        app:sub_shadow_dy="5dp"
+        app:sub_shadow_radius="20dp">
+
+        <com.github.layout.SubImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="25dp"
+            android:scaleType="fitXY"
+            app:sub_corner_radius_top_left="10dp"
+            app:sub_corner_radius_top_right="10dp"
+            android:src="@mipmap/food" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="center_vertical"
+            android:padding="2dp"
+            android:text="@string/shadow_tips" />
+
+    </com.github.layout.SubLinearLayout>
+
+
+    <com.github.layout.SubTextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:text="SubTextView"
+        app:sub_background_normal="#00cc80"
+        app:sub_background_pressed="#00A366"
+        app:sub_corner_radius="4dp"
+        app:sub_shadow_color="#175250"
+        app:sub_shadow_radius="8dp" />
+
+    <com.github.layout.SubRelativeLayout
+        android:id="@+id/layout_ll"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        app:sub_background_normal="@android:color/white"
+        app:sub_border_color_normal="@color/colorAccent"
+        app:sub_border_width_normal="2dp"
+        app:sub_corner_radius="10dp"
+        app:sub_ripple="true"
+        app:sub_ripple_color="@color/purple"
+        app:sub_ripple_mask_style="normal"
+        app:sub_shadow_color="@color/colorAccent"
+        app:sub_shadow_dx="5dp"
+        app:sub_shadow_dy="5dp"
+        app:sub_shadow_radius="10dp" />
+</LinearLayout>

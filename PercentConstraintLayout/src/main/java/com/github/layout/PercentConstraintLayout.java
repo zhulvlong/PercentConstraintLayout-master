@@ -14,12 +14,25 @@ import android.view.ViewGroup;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class PercentConstraintLayout extends ConstraintLayout {
+import com.github.layout.helper.SubViewBaseHelper;
+import com.github.layout.iface.RHelper;
+
+public class PercentConstraintLayout extends ConstraintLayout implements RHelper<SubViewBaseHelper> {
     private Paint shadowPaint;
     private Paint clipPaint;
+    private SubViewBaseHelper mHelper;
+
+    public PercentConstraintLayout(Context context) {
+        this(context, null);
+    }
 
     public PercentConstraintLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
+    }
+
+    public PercentConstraintLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        mHelper = new SubViewBaseHelper(context, this, attrs);
         shadowPaint = new Paint();
         shadowPaint.setAntiAlias(true);
         shadowPaint.setDither(true);
@@ -32,7 +45,17 @@ public class PercentConstraintLayout extends ConstraintLayout {
         clipPaint.setFilterBitmap(true);
         clipPaint.setStyle(Paint.Style.FILL);
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+    }
 
+    @Override
+    public SubViewBaseHelper getHelper() {
+        return mHelper;
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        mHelper.dispatchDraw(canvas);
     }
 
     @Override
@@ -175,6 +198,7 @@ public class PercentConstraintLayout extends ConstraintLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        mHelper.onLayout(changed, left, top, right, bottom);
         for (int i = 0, size = getChildCount(); i < size; i++) {
             View v = getChildAt(i);
             ViewGroup.LayoutParams lp = v.getLayoutParams();

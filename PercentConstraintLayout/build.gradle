@@ -4,16 +4,12 @@ apply plugin: 'com.github.dcendents.android-maven'
 android {
     compileSdkVersion 31
 
-
-
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -22,11 +18,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    //不要使用编译时依赖，确保开发者正确使用
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }

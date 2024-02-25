@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SubRadioButton" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubRadioButton
+            android:id="@+id/btn1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="IOS"
+            app:sub_background_checked="@array/array_l_r"
+            app:sub_background_normal="#74EBD5"
+            app:sub_corner_radius_bottom_left="10dp"
+            app:sub_corner_radius_top_left="10dp"
+            app:sub_text_color_checked="@color/colorAccent" />
+
+        <com.github.layout.SubRadioButton
+            android:id="@+id/btn2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="Android"
+            app:sub_background_checked="@array/array_l_r"
+            app:sub_background_normal="#74EBD5"
+            app:sub_text_color_checked="@color/colorAccent" />
+
+        <com.github.layout.SubRadioButton
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="Html"
+            app:sub_background_checked="@array/array_l_r"
+            app:sub_background_normal="#74EBD5"
+            app:sub_corner_radius_bottom_right="10dp"
+            app:sub_corner_radius_top_right="10dp"
+            app:sub_text_color_checked="@color/colorAccent" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubRadioButton
+            android:id="@+id/btn1_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:button="@null"
+            android:gravity="center"
+            android:text="左图"
+            app:sub_background_checked="@array/array_l_r"
+            app:sub_background_normal="#FFC107"
+            app:sub_corner_radius_bottom_left="10dp"
+            app:sub_corner_radius_top_left="10dp"
+            app:sub_icon_src_checked="@mipmap/icon_rb_green_selected"
+            app:sub_icon_src_normal="@mipmap/icon_rb_green_default"
+            app:sub_icon_with_text="true" />
+
+        <com.github.layout.SubRadioButton
+            android:id="@+id/btn2_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="图文居中"
+            app:sub_background_checked="@array/array_l_r"
+            app:sub_background_normal="#FFC107"
+            app:sub_icon_src_checked="@mipmap/icon_rb_green_selected"
+            app:sub_icon_src_normal="@mipmap/icon_rb_green_default"
+            app:sub_icon_with_text="true" />
+
+        <com.github.layout.SubRadioButton
+            android:id="@+id/btn3_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="右图"
+            app:sub_background_checked="@array/array_l_r"
+            app:sub_background_normal="#FFC107"
+            app:sub_corner_radius_bottom_right="10dp"
+            app:sub_corner_radius_top_right="10dp"
+            app:sub_icon_direction="right"
+            app:sub_icon_src_checked="@mipmap/icon_rb_green_selected"
+            app:sub_icon_src_normal="@mipmap/icon_rb_green_default"
+            app:sub_icon_with_text="true" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="SubCheckBox" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubCheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="IOS"
+            app:sub_border_color_checked="@color/purple"
+            app:sub_border_color_normal="@color/colorAccent"
+            app:sub_border_width_normal="2dp"
+            app:sub_text_color_checked="@color/purple" />
+
+        <com.github.layout.SubCheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="Android"
+            app:sub_border_color_checked="@color/purple"
+            app:sub_border_color_normal="@color/colorAccent"
+            app:sub_border_width_normal="2dp"
+            app:sub_text_color_checked="@color/purple" />
+
+        <com.github.layout.SubCheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="Html"
+            app:sub_border_color_checked="@color/purple"
+            app:sub_border_color_normal="@color/colorAccent"
+            app:sub_border_width_normal="2dp"
+            app:sub_text_color_checked="@color/purple" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubCheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="IOS"
+            app:sub_border_color_checked="@color/purple"
+            app:sub_border_color_normal="@color/colorAccent"
+            app:sub_border_width_normal="2dp"
+            app:sub_icon_src_checked="@mipmap/icon_rb_green_selected"
+            app:sub_icon_src_normal="@mipmap/icon_rb_green_default"
+            app:sub_icon_with_text="true"
+            app:sub_text_color_checked="@color/purple" />
+
+        <com.github.layout.SubCheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="Android"
+            app:sub_border_color_checked="@color/purple"
+            app:sub_border_color_normal="@color/colorAccent"
+            app:sub_border_width_normal="2dp"
+            app:sub_icon_src_checked="@mipmap/icon_rb_green_selected"
+            app:sub_icon_src_normal="@mipmap/icon_rb_green_default"
+            app:sub_icon_with_text="true"
+            app:sub_text_color_checked="@color/purple" />
+
+        <com.github.layout.SubCheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="Html"
+            app:sub_border_color_checked="@color/purple"
+            app:sub_border_color_normal="@color/colorAccent"
+            app:sub_border_width_normal="2dp"
+            app:sub_icon_src_checked="@mipmap/icon_rb_green_selected"
+            app:sub_icon_src_normal="@mipmap/icon_rb_green_default"
+            app:sub_icon_with_text="true"
+            app:sub_text_color_checked="@color/purple" />
+
+    </LinearLayout>
+
+</LinearLayout>

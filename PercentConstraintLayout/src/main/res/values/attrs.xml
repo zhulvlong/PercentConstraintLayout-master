@@ -1,85 +1,1039 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--为了方便扩展其他layout，定义在外层，命名以layout_开头，否则lint会报红警告-->
-    <attr name="layout_radiusCP" format="dimension|reference" /><!--圆角大小-->
-    <attr name="layout_radiusLeftTopCP" format="dimension|reference" /><!--左上圆角大小-->
-    <attr name="layout_radiusRightTopCP" format="dimension|reference" /><!--右上圆角大小-->
-    <attr name="layout_radiusRightBottomCP" format="dimension|reference" /><!--左下圆角大小-->
-    <attr name="layout_radiusLeftBottomCP" format="dimension|reference" /><!--右下圆角大小-->
+    <attr name="percent_constraint_radius" format="dimension|reference" /><!--圆角大小-->
+    <attr name="percent_constraint_radiusLeftTop" format="dimension|reference" /><!--左上圆角大小-->
+    <attr name="percent_constraint_radiusRightTop" format="dimension|reference" /><!--右上圆角大小-->
+    <attr name="percent_constraint_radiusRightBottom" format="dimension|reference" /><!--左下圆角大小-->
+    <attr name="percent_constraint_radiusLeftBottom" format="dimension|reference" /><!--右下圆角大小-->
 
-    <attr name="layout_shadowColorCP" format="color|reference" /><!--阴影颜色-->
-    <attr name="layout_shadowEvaluationCP" format="dimension|reference" /><!--阴影大小-->
-    <attr name="layout_shadowDxCP" format="dimension|reference" /><!--阴影偏移X-->
-    <attr name="layout_shadowDyCP" format="dimension|reference" /><!--阴影偏移Y-->
+    <attr name="percent_constraint_shadowColor" format="color|reference" /><!--阴影颜色-->
+    <attr name="percent_constraint_shadowEvaluation" format="dimension|reference" /><!--阴影大小-->
+    <attr name="percent_constraint_shadowDx" format="dimension|reference" /><!--阴影偏移X-->
+    <attr name="percent_constraint_shadowDy" format="dimension|reference" /><!--阴影偏移Y-->
 
     <!--下面的这些百分比属性必须设置左右约束/上下约束才会生效-->
-    <attr name="layout_widthCP" format="string" />
-    <attr name="layout_heightCP" format="string" />
-    <attr name="layout_marginLeftCP" format="string" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
-    <attr name="layout_marginRightCP" format="string" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
-    <attr name="layout_marginStartCP" format="string" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
-    <attr name="layout_marginEndCP" format="string" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
-    <attr name="layout_marginTopCP" format="string" /><!--控件先对容器(ConstraintLayout)上边距和容器高度的百分比-->
-    <attr name="layout_marginBottomCP" format="string" /><!--控件先对容器(ConstraintLayout)下边距和容器高度的百分比-->
+    <attr name="percent_constraint_width" format="string" />
+    <attr name="percent_constraint_height" format="string" />
+    <attr name="percent_constraint_marginLeft" format="string" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
+    <attr name="percent_constraint_marginRight" format="string" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
+    <attr name="percent_constraint_marginStart" format="string" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
+    <attr name="percent_constraint_marginEnd" format="string" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
+    <attr name="percent_constraint_marginTop" format="string" /><!--控件先对容器(ConstraintLayout)上边距和容器高度的百分比-->
+    <attr name="percent_constraint_marginBottom" format="string" /><!--控件先对容器(ConstraintLayout)下边距和容器高度的百分比-->
 
     <!--用统一一个PercentLayout，用于封装读取自定义属性-->
     <declare-styleable name="PercentLayout">
-        <attr name="layout_radiusCP" />
-        <attr name="layout_radiusLeftTopCP" />
-        <attr name="layout_radiusRightTopCP" />
-        <attr name="layout_radiusRightBottomCP" />
-        <attr name="layout_radiusLeftBottomCP" />
-        <attr name="layout_shadowColorCP" />
-        <attr name="layout_shadowEvaluationCP" />
-        <attr name="layout_shadowDxCP" />
-        <attr name="layout_shadowDyCP" />
-        <attr name="layout_widthCP" />
-        <attr name="layout_heightCP" />
-        <attr name="layout_marginLeftCP" />
-        <attr name="layout_marginRightCP" />
-        <attr name="layout_marginTopCP" />
-        <attr name="layout_marginBottomCP" />
-        <attr name="layout_marginStartCP" />
-        <attr name="layout_marginEndCP" />
+        <attr name="percent_constraint_radius" />
+        <attr name="percent_constraint_radiusLeftTop" />
+        <attr name="percent_constraint_radiusRightTop" />
+        <attr name="percent_constraint_radiusRightBottom" />
+        <attr name="percent_constraint_radiusLeftBottom" />
+        <attr name="percent_constraint_shadowColor" />
+        <attr name="percent_constraint_shadowEvaluation" />
+        <attr name="percent_constraint_shadowDx" />
+        <attr name="percent_constraint_shadowDy" />
+        <attr name="percent_constraint_width" />
+        <attr name="percent_constraint_height" />
+        <attr name="percent_constraint_marginLeft" />
+        <attr name="percent_constraint_marginRight" />
+        <attr name="percent_constraint_marginTop" />
+        <attr name="percent_constraint_marginBottom" />
+        <attr name="percent_constraint_marginStart" />
+        <attr name="percent_constraint_marginEnd" />
     </declare-styleable>
     <declare-styleable name="PercentLinearLayout_Layout">
-        <attr name="layout_radiusCP" />
-        <attr name="layout_radiusLeftTopCP" />
-        <attr name="layout_radiusRightTopCP" />
-        <attr name="layout_radiusRightBottomCP" />
-        <attr name="layout_radiusLeftBottomCP" />
-        <attr name="layout_shadowColorCP" />
-        <attr name="layout_shadowEvaluationCP" />
-        <attr name="layout_shadowDxCP" />
-        <attr name="layout_shadowDyCP" />
-        <attr name="layout_widthCP" />
-        <attr name="layout_heightCP" />
-        <attr name="layout_marginLeftCP" />
-        <attr name="layout_marginRightCP" />
-        <attr name="layout_marginTopCP" />
-        <attr name="layout_marginBottomCP" />
-        <attr name="layout_marginStartCP" />
-        <attr name="layout_marginEndCP" />
+        <attr name="percent_constraint_radius" />
+        <attr name="percent_constraint_radiusLeftTop" />
+        <attr name="percent_constraint_radiusRightTop" />
+        <attr name="percent_constraint_radiusRightBottom" />
+        <attr name="percent_constraint_radiusLeftBottom" />
+        <attr name="percent_constraint_shadowColor" />
+        <attr name="percent_constraint_shadowEvaluation" />
+        <attr name="percent_constraint_shadowDx" />
+        <attr name="percent_constraint_shadowDy" />
+        <attr name="percent_constraint_width" />
+        <attr name="percent_constraint_height" />
+        <attr name="percent_constraint_marginLeft" />
+        <attr name="percent_constraint_marginRight" />
+        <attr name="percent_constraint_marginTop" />
+        <attr name="percent_constraint_marginBottom" />
+        <attr name="percent_constraint_marginStart" />
+        <attr name="percent_constraint_marginEnd" />
     </declare-styleable>
 
     <!--和PercentLayout属性列表一样，但是命名要以XXX_Layout格式，这样开发工具会提示自定义属性-->
     <declare-styleable name="PercentConstraintLayout_Layout">
-        <attr name="layout_radiusCP" />
-        <attr name="layout_radiusLeftTopCP" />
-        <attr name="layout_radiusRightTopCP" />
-        <attr name="layout_radiusRightBottomCP" />
-        <attr name="layout_radiusLeftBottomCP" />
-        <attr name="layout_shadowColorCP" />
-        <attr name="layout_shadowEvaluationCP" />
-        <attr name="layout_shadowDxCP" />
-        <attr name="layout_shadowDyCP" />
-        <attr name="layout_widthCP" />
-        <attr name="layout_heightCP" />
-        <attr name="layout_marginLeftCP" />
-        <attr name="layout_marginRightCP" />
-        <attr name="layout_marginTopCP" />
-        <attr name="layout_marginBottomCP" />
-        <attr name="layout_marginStartCP" />
-        <attr name="layout_marginEndCP" />
+        <attr name="percent_constraint_radius" />
+        <attr name="percent_constraint_radiusLeftTop" />
+        <attr name="percent_constraint_radiusRightTop" />
+        <attr name="percent_constraint_radiusRightBottom" />
+        <attr name="percent_constraint_radiusLeftBottom" />
+        <attr name="percent_constraint_shadowColor" />
+        <attr name="percent_constraint_shadowEvaluation" />
+        <attr name="percent_constraint_shadowDx" />
+        <attr name="percent_constraint_shadowDy" />
+        <attr name="percent_constraint_width" />
+        <attr name="percent_constraint_height" />
+        <attr name="percent_constraint_marginLeft" />
+        <attr name="percent_constraint_marginRight" />
+        <attr name="percent_constraint_marginTop" />
+        <attr name="percent_constraint_marginBottom" />
+        <attr name="percent_constraint_marginStart" />
+        <attr name="percent_constraint_marginEnd" />
     </declare-styleable>
+
+    <!--*****************************************************************************************-->
+
+    <!--SubWidgetHelper:基础通用属性-->
+
+    <!--四周圆角度、左上、右上、左下、右下-->
+    <attr name="sub_corner_radius" format="dimension" />
+    <attr name="sub_corner_radius_top_left" format="dimension" />
+    <attr name="sub_corner_radius_top_right" format="dimension" />
+    <attr name="sub_corner_radius_bottom_left" format="dimension" />
+    <attr name="sub_corner_radius_bottom_right" format="dimension" />
+
+    <!--虚线边框宽度/间隔-->
+    <attr name="sub_border_dash_width" format="dimension" />
+    <attr name="sub_border_dash_gap" format="dimension" />
+
+    <!--边框宽度-->
+    <attr name="sub_border_width_normal" format="dimension" />
+    <attr name="sub_border_width_pressed" format="dimension" />
+    <attr name="sub_border_width_unable" format="dimension" />
+    <attr name="sub_border_width_checked" format="dimension" />
+    <attr name="sub_border_width_selected" format="dimension" />
+
+    <!--边框颜色-->
+    <attr name="sub_border_color_normal" format="color" />
+    <attr name="sub_border_color_pressed" format="color" />
+    <attr name="sub_border_color_unable" format="color" />
+    <attr name="sub_border_color_checked" format="color" />
+    <attr name="sub_border_color_selected" format="color" />
+
+    <!--背景颜色-->
+    <attr name="sub_background_normal" format="color|reference" />
+    <attr name="sub_background_pressed" format="color|reference" />
+    <attr name="sub_background_unable" format="color|reference" />
+    <attr name="sub_background_checked" format="color|reference" />
+    <attr name="sub_background_selected" format="color|reference" />
+
+    <!--Gradient相关-->
+    <attr name="sub_gradient_orientation">
+        <enum name="TOP_BOTTOM" value="0" />
+        <enum name="TR_BL" value="1" />
+        <enum name="RIGHT_LEFT" value="2" />
+        <enum name="BR_TL" value="3" />
+        <enum name="BOTTOM_TOP" value="4" />
+        <enum name="BL_TR" value="5" />
+        <enum name="LEFT_RIGHT" value="6" />
+        <enum name="TL_BR" value="7" />
+    </attr>
+    <attr name="sub_gradient_type">
+        <enum name="linear" value="0" />
+        <enum name="radial" value="1" />
+        <enum name="sweep" value="2" />
+    </attr>
+    <attr name="sub_gradient_radius" format="dimension" />
+    <attr name="sub_gradient_centerX" format="float" />
+    <attr name="sub_gradient_centerY" format="float" />
+
+    <!-- TextView相关属性 -->
+
+    <!--文本颜色-->
+    <attr name="sub_text_color_normal" format="color" />
+    <attr name="sub_text_color_pressed" format="color" />
+    <attr name="sub_text_color_unable" format="color" />
+    <attr name="sub_text_color_checked" format="color" />
+    <attr name="sub_text_color_selected" format="color" />
+
+    <!--图标资源,大小,位置(版本兼容保留)-->
+    <attr name="sub_icon_src_normal" format="reference" />
+    <attr name="sub_icon_src_pressed" format="reference" />
+    <attr name="sub_icon_src_unable" format="reference" />
+    <attr name="sub_icon_src_checked" format="reference" />
+    <attr name="sub_icon_src_selected" format="reference" />
+    <attr name="sub_icon_height" format="dimension" />
+    <attr name="sub_icon_width" format="dimension" />
+    <attr name="sub_icon_direction">
+        <enum name="left" value="1" />
+        <enum name="top" value="2" />
+        <enum name="right" value="3" />
+        <enum name="bottom" value="4" />
+    </attr>
+
+    <!--图标资源,大小,位置-->
+    <attr name="sub_icon_normal_left" format="reference" />
+    <attr name="sub_icon_pressed_left" format="reference" />
+    <attr name="sub_icon_unable_left" format="reference" />
+    <attr name="sub_icon_checked_left" format="reference" />
+    <attr name="sub_icon_selected_left" format="reference" />
+    <attr name="sub_icon_normal_right" format="reference" />
+    <attr name="sub_icon_pressed_right" format="reference" />
+    <attr name="sub_icon_unable_right" format="reference" />
+    <attr name="sub_icon_checked_right" format="reference" />
+    <attr name="sub_icon_selected_right" format="reference" />
+    <attr name="sub_icon_normal_top" format="reference" />
+    <attr name="sub_icon_pressed_top" format="reference" />
+    <attr name="sub_icon_unable_top" format="reference" />
+    <attr name="sub_icon_checked_top" format="reference" />
+    <attr name="sub_icon_selected_top" format="reference" />
+    <attr name="sub_icon_normal_bottom" format="reference" />
+    <attr name="sub_icon_pressed_bottom" format="reference" />
+    <attr name="sub_icon_unable_bottom" format="reference" />
+    <attr name="sub_icon_checked_bottom" format="reference" />
+    <attr name="sub_icon_selected_bottom" format="reference" />
+    <attr name="sub_icon_height_left" format="dimension" />
+    <attr name="sub_icon_width_left" format="dimension" />
+    <attr name="sub_icon_height_bottom" format="dimension" />
+    <attr name="sub_icon_width_bottom" format="dimension" />
+    <attr name="sub_icon_height_top" format="dimension" />
+    <attr name="sub_icon_width_top" format="dimension" />
+    <attr name="sub_icon_height_right" format="dimension" />
+    <attr name="sub_icon_width_right" format="dimension" />
+
+    <!--字体样式-->
+    <attr name="sub_text_typeface" format="string" />
+
+    <!--drawable和text是否居中-->
+    <attr name="sub_icon_with_text" format="boolean" />
+
+    <!--ViewGroup是否可用-->
+    <attr name="sub_enabled" format="boolean" />
+
+    <!--Ripple相关(波纹效果，背景颜色图片切换会慢慢变淡消失)-->
+    <!--是否开启Ripple-->
+    <attr name="sub_ripple" format="boolean" />
+    <!--Ripple颜色-->
+    <attr name="sub_ripple_color" format="color" />
+    <!--Ripple波纹限制-->
+    <attr name="sub_ripple_mask" format="reference" />
+    <!--Ripple波纹限制-->
+    <attr name="sub_ripple_mask_style">
+        <enum name="none" value="1" />
+        <enum name="normal" value="2" />
+        <enum name="drawable" value="3" />
+    </attr>
+
+    <!--shadow-->
+    <attr name="sub_shadow_dx" format="dimension" />
+    <attr name="sub_shadow_dy" format="dimension" />
+    <attr name="sub_shadow_color" format="color" />
+    <attr name="sub_shadow_radius" format="dimension" />
+
+    <!--是否裁剪布局-->
+    <attr name="sub_clip_layout" format="boolean" />
+
+    <!--所有Sub开头的自定义控件通用属性-->
+    <declare-styleable name="SubBaseViewAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_checked" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_checked" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_checked" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+
+        <!--clipLayout-->
+        <attr name="sub_clip_layout" />
+    </declare-styleable>
+
+    <!-- SubTextView -->
+    <declare-styleable name="SubTextViewAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_checked" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_checked" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_checked" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--文本颜色-->
+        <attr name="sub_text_color_normal" />
+        <attr name="sub_text_color_pressed" />
+        <attr name="sub_text_color_unable" />
+        <attr name="sub_text_color_checked" />
+        <attr name="sub_text_color_selected" />
+
+        <!--字体样式-->
+        <attr name="sub_text_typeface" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--图标资源,大小-->
+        <attr name="sub_icon_normal_left" />
+        <attr name="sub_icon_pressed_left" />
+        <attr name="sub_icon_unable_left" />
+        <attr name="sub_icon_checked_left" />
+        <attr name="sub_icon_selected_left" />
+        <attr name="sub_icon_normal_right" />
+        <attr name="sub_icon_pressed_right" />
+        <attr name="sub_icon_unable_right" />
+        <attr name="sub_icon_checked_right" />
+        <attr name="sub_icon_selected_right" />
+        <attr name="sub_icon_normal_top" />
+        <attr name="sub_icon_pressed_top" />
+        <attr name="sub_icon_unable_top" />
+        <attr name="sub_icon_checked_top" />
+        <attr name="sub_icon_selected_top" />
+        <attr name="sub_icon_normal_bottom" />
+        <attr name="sub_icon_pressed_bottom" />
+        <attr name="sub_icon_unable_bottom" />
+        <attr name="sub_icon_checked_bottom" />
+        <attr name="sub_icon_selected_bottom" />
+        <attr name="sub_icon_height_left" />
+        <attr name="sub_icon_width_left" />
+        <attr name="sub_icon_height_bottom" />
+        <attr name="sub_icon_width_bottom" />
+        <attr name="sub_icon_height_top" />
+        <attr name="sub_icon_width_top" />
+        <attr name="sub_icon_height_right" />
+        <attr name="sub_icon_width_right" />
+        <!--原生属性-->
+        <attr name="android:drawableLeft" />
+        <attr name="android:drawableRight" />
+        <attr name="android:drawableBottom" />
+        <attr name="android:drawableTop" />
+        <attr name="android:drawableStart" />
+        <attr name="android:drawableEnd" />
+
+        <!--图标资源,大小,位置(版本兼容保留)-->
+        <attr name="sub_icon_src_normal" />
+        <attr name="sub_icon_src_pressed" />
+        <attr name="sub_icon_src_unable" />
+        <attr name="sub_icon_src_checked" />
+        <attr name="sub_icon_src_selected" />
+        <attr name="sub_icon_height" />
+        <attr name="sub_icon_width" />
+        <attr name="sub_icon_direction" />
+
+        <!--drawable和Text居中-->
+        <attr name="sub_icon_with_text" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+    </declare-styleable>
+
+    <!-- SubEditText -->
+    <declare-styleable name="SubEditTextAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--文本颜色-->
+        <attr name="sub_text_color_normal" />
+        <attr name="sub_text_color_pressed" />
+        <attr name="sub_text_color_unable" />
+        <attr name="sub_text_color_selected" />
+
+        <!--图标资源,大小-->
+        <attr name="sub_icon_normal_left" />
+        <attr name="sub_icon_pressed_left" />
+        <attr name="sub_icon_unable_left" />
+        <attr name="sub_icon_checked_left" />
+        <attr name="sub_icon_selected_left" />
+        <attr name="sub_icon_normal_right" />
+        <attr name="sub_icon_pressed_right" />
+        <attr name="sub_icon_unable_right" />
+        <attr name="sub_icon_checked_right" />
+        <attr name="sub_icon_selected_right" />
+        <attr name="sub_icon_normal_top" />
+        <attr name="sub_icon_pressed_top" />
+        <attr name="sub_icon_unable_top" />
+        <attr name="sub_icon_checked_top" />
+        <attr name="sub_icon_selected_top" />
+        <attr name="sub_icon_normal_bottom" />
+        <attr name="sub_icon_pressed_bottom" />
+        <attr name="sub_icon_unable_bottom" />
+        <attr name="sub_icon_checked_bottom" />
+        <attr name="sub_icon_selected_bottom" />
+        <attr name="sub_icon_height_left" />
+        <attr name="sub_icon_width_left" />
+        <attr name="sub_icon_height_bottom" />
+        <attr name="sub_icon_width_bottom" />
+        <attr name="sub_icon_height_top" />
+        <attr name="sub_icon_width_top" />
+        <attr name="sub_icon_height_right" />
+        <attr name="sub_icon_width_right" />
+
+        <!--图标资源,大小(版本兼容保留)-->
+        <attr name="sub_icon_src_normal" />
+        <attr name="sub_icon_src_pressed" />
+        <attr name="sub_icon_src_unable" />
+        <attr name="sub_icon_src_selected" />
+        <attr name="sub_icon_height" />
+        <attr name="sub_icon_width" />
+        <attr name="sub_icon_direction" />
+
+        <!--字体样式-->
+        <attr name="sub_text_typeface" />
+
+        <!--drawable和Text居中-->
+        <attr name="sub_icon_with_text" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+    </declare-styleable>
+
+    <!-- SubImageView -->
+    <declare-styleable name="SubImageViewAttrs">
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--边框-->
+        <attr name="sub_border_width" format="dimension" />
+        <attr name="sub_border_color" format="color" />
+
+        <!--是否圆形-->
+        <attr name="sub_is_circle" format="boolean" />
+    </declare-styleable>
+
+    <!-- SubLinearLayout -->
+    <declare-styleable name="SubLinearLayoutAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+
+        <!--clipLayout-->
+        <attr name="sub_clip_layout" />
+    </declare-styleable>
+
+    <!-- SubRelativeLayout -->
+    <declare-styleable name="SubRelativeLayoutAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+
+        <!--clipLayout-->
+        <attr name="sub_clip_layout" />
+    </declare-styleable>
+
+    <!-- SubFrameLayout -->
+    <declare-styleable name="SubFrameLayoutAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+
+        <!--clipLayout-->
+        <attr name="sub_clip_layout" />
+    </declare-styleable>
+
+    <!-- PercentConstraintLayout -->
+    <declare-styleable name="PercentConstraintLayoutAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+
+        <!--clipLayout-->
+        <attr name="sub_clip_layout" />
+    </declare-styleable>
+
+    <!-- SubView -->
+    <declare-styleable name="SubViewAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+    </declare-styleable>
+
+    <!-- SubRadioButton -->
+    <declare-styleable name="SubRadioButtonAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_checked" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_checked" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_checked" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--文本颜色-->
+        <attr name="sub_text_color_normal" />
+        <attr name="sub_text_color_pressed" />
+        <attr name="sub_text_color_unable" />
+        <attr name="sub_text_color_checked" />
+        <attr name="sub_text_color_selected" />
+
+        <!--字体样式-->
+        <attr name="sub_text_typeface" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--图标资源,大小-->
+        <attr name="sub_icon_normal_left" />
+        <attr name="sub_icon_pressed_left" />
+        <attr name="sub_icon_unable_left" />
+        <attr name="sub_icon_checked_left" />
+        <attr name="sub_icon_selected_left" />
+        <attr name="sub_icon_normal_right" />
+        <attr name="sub_icon_pressed_right" />
+        <attr name="sub_icon_unable_right" />
+        <attr name="sub_icon_checked_right" />
+        <attr name="sub_icon_selected_right" />
+        <attr name="sub_icon_normal_top" />
+        <attr name="sub_icon_pressed_top" />
+        <attr name="sub_icon_unable_top" />
+        <attr name="sub_icon_checked_top" />
+        <attr name="sub_icon_selected_top" />
+        <attr name="sub_icon_normal_bottom" />
+        <attr name="sub_icon_pressed_bottom" />
+        <attr name="sub_icon_unable_bottom" />
+        <attr name="sub_icon_checked_bottom" />
+        <attr name="sub_icon_selected_bottom" />
+        <attr name="sub_icon_height_left" />
+        <attr name="sub_icon_width_left" />
+        <attr name="sub_icon_height_bottom" />
+        <attr name="sub_icon_width_bottom" />
+        <attr name="sub_icon_height_top" />
+        <attr name="sub_icon_width_top" />
+        <attr name="sub_icon_height_right" />
+        <attr name="sub_icon_width_right" />
+
+        <!--图标资源,大小,位置(版本兼容保留)-->
+        <attr name="sub_icon_src_normal" />
+        <attr name="sub_icon_src_pressed" />
+        <attr name="sub_icon_src_unable" />
+        <attr name="sub_icon_src_checked" />
+        <attr name="sub_icon_src_selected" />
+        <attr name="sub_icon_height" />
+        <attr name="sub_icon_width" />
+        <attr name="sub_icon_direction" />
+
+        <!--drawable和Text居中-->
+        <attr name="sub_icon_with_text" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+    </declare-styleable>
+
+    <!-- SubCheckBox -->
+    <declare-styleable name="SubCheckBoxAttrs">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_checked" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_checked" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_checked" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--文本颜色-->
+        <attr name="sub_text_color_normal" />
+        <attr name="sub_text_color_pressed" />
+        <attr name="sub_text_color_unable" />
+        <attr name="sub_text_color_checked" />
+        <attr name="sub_text_color_selected" />
+
+        <!--字体样式-->
+        <attr name="sub_text_typeface" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--图标资源,大小-->
+        <attr name="sub_icon_normal_left" />
+        <attr name="sub_icon_pressed_left" />
+        <attr name="sub_icon_unable_left" />
+        <attr name="sub_icon_checked_left" />
+        <attr name="sub_icon_selected_left" />
+        <attr name="sub_icon_normal_right" />
+        <attr name="sub_icon_pressed_right" />
+        <attr name="sub_icon_unable_right" />
+        <attr name="sub_icon_checked_right" />
+        <attr name="sub_icon_selected_right" />
+        <attr name="sub_icon_normal_top" />
+        <attr name="sub_icon_pressed_top" />
+        <attr name="sub_icon_unable_top" />
+        <attr name="sub_icon_checked_top" />
+        <attr name="sub_icon_selected_top" />
+        <attr name="sub_icon_normal_bottom" />
+        <attr name="sub_icon_pressed_bottom" />
+        <attr name="sub_icon_unable_bottom" />
+        <attr name="sub_icon_checked_bottom" />
+        <attr name="sub_icon_selected_bottom" />
+        <attr name="sub_icon_height_left" />
+        <attr name="sub_icon_width_left" />
+        <attr name="sub_icon_height_bottom" />
+        <attr name="sub_icon_width_bottom" />
+        <attr name="sub_icon_height_top" />
+        <attr name="sub_icon_width_top" />
+        <attr name="sub_icon_height_right" />
+        <attr name="sub_icon_width_right" />
+
+        <!--图标资源,大小,位置(版本兼容保留)-->
+        <attr name="sub_icon_src_normal" />
+        <attr name="sub_icon_src_pressed" />
+        <attr name="sub_icon_src_unable" />
+        <attr name="sub_icon_src_checked" />
+        <attr name="sub_icon_src_selected" />
+        <attr name="sub_icon_height" />
+        <attr name="sub_icon_width" />
+        <attr name="sub_icon_direction" />
+
+        <!--drawable和Text居中-->
+        <attr name="sub_icon_with_text" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_radius" />
+    </declare-styleable>
+
 </resources>

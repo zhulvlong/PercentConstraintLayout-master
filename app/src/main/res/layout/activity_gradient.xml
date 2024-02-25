@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.github.layout.SubTextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="下到上"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:sub_background_normal="@array/array_b_t"
+            app:sub_background_pressed="@array/array_l_r"
+            app:sub_corner_radius="10dp"
+            app:sub_gradient_orientation="BOTTOM_TOP" />
+
+        <com.github.layout.SubTextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="左到右"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:sub_background_normal="@array/array_l_r"
+            app:sub_corner_radius="10dp"
+            app:sub_gradient_orientation="LEFT_RIGHT" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.github.layout.SubTextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:text="左下到右上"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:sub_background_normal="@array/array_bl_tr"
+            app:sub_corner_radius="10dp"
+            app:sub_gradient_orientation="BL_TR" />
+
+        <com.github.layout.SubTextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="右上到左下"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:sub_background_normal="@array/array_tr_bl"
+            app:sub_corner_radius="10dp"
+            app:sub_gradient_orientation="TR_BL" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.github.layout.SubTextView
+            android:id="@+id/RTextView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:text="sweep"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:sub_background_normal="@array/rainbow_color"
+            app:sub_corner_radius="50dp"
+            app:sub_gradient_type="sweep" />
+
+        <com.github.layout.SubTextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="radial"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:sub_background_normal="@array/rainbow_color"
+            app:sub_corner_radius="50dp"
+            app:sub_gradient_type="sweep" />
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp">
+
+            <com.github.layout.SubTextView
+                android:id="@+id/view1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:gravity="center_horizontal"
+                android:paddingTop="20dp"
+                android:text="radial"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                app:sub_background_normal="@array/rainbow_color"
+                app:sub_corner_radius="50dp"
+                app:sub_gradient_type="radial" />
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/white" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

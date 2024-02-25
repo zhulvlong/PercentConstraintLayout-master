@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.layout.SubLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.github.layout.SubLinearLayout
+        android:id="@+id/layout_ll"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        app:sub_background_normal="#cc3"
+        app:sub_corner_radius="6dp"
+        app:sub_shadow_color="#E91E63"
+        app:sub_shadow_dx="5dp"
+        app:sub_shadow_dy="5dp"
+        app:sub_shadow_radius="20dp">
+
+        <com.github.layout.SubTextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:gravity="center_vertical"
+            android:padding="2dp"
+            android:text="@string/app_name" />
+
+    </com.github.layout.SubLinearLayout>
+
+</com.github.layout.SubLinearLayout>

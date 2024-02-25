@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Ripple相关(波纹效果，背景颜色图片切换会慢慢变淡消失)" />
+
+    <com.github.layout.SubTextView
+        style="@style/itemRipple"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:text="无内容限制，默认mask"
+        app:sub_corner_radius="6dp"
+        app:sub_ripple="true"
+        app:sub_ripple_color="@color/purple"
+        app:sub_ripple_mask_style="normal" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="演示Ripple和 unable 状态共存" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubTextView
+            android:id="@+id/tv_tag"
+            style="@style/itemMain"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:clickable="true"
+            android:text="有内容限制，默认mask"
+            app:sub_background_normal="#D9AFD9"
+            app:sub_background_unable="#cccccc"
+            app:sub_corner_radius="6dp"
+            app:sub_ripple="true"
+            app:sub_ripple_color="@color/purple"
+            app:sub_ripple_mask_style="normal" />
+
+        <com.github.layout.SubTextView
+            android:id="@+id/tv_update"
+            style="@style/itemMain"
+            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="true"
+            app:sub_background_normal="#D9AFD9"
+            app:sub_background_pressed="#B37EB3"
+            app:sub_corner_radius="6dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="演示Ripple和 checked 状态共存" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.github.layout.SubRadioButton
+            android:id="@+id/btn1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="IOS"
+            app:sub_background_checked="@array/array_l_r"
+            app:sub_background_normal="#74EBD5"
+            app:sub_corner_radius_bottom_left="10dp"
+            app:sub_corner_radius_top_left="10dp"
+            app:sub_ripple="true"
+            app:sub_ripple_color="@color/colorAccent"
+            app:sub_ripple_mask="@mipmap/icon_star"
+            app:sub_ripple_mask_style="normal"
+            app:sub_text_color_checked="@color/colorAccent" />
+
+        <com.github.layout.SubRadioButton
+            android:id="@+id/btn2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="Android"
+            app:sub_background_checked="@array/array_l_r"
+            app:sub_background_normal="#74EBD5"
+            app:sub_corner_radius_bottom_right="10dp"
+            app:sub_corner_radius_top_right="10dp"
+            app:sub_ripple="true"
+            app:sub_ripple_color="@color/colorAccent"
+            app:sub_ripple_mask="@mipmap/icon_star"
+            app:sub_ripple_mask_style="drawable"
+            app:sub_text_color_checked="@color/colorAccent" />
+
+    </RadioGroup>
+
+    <com.github.layout.SubTextView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="自定义drawableMask"
+        app:sub_border_color_normal="@color/purple"
+        app:sub_border_width_normal="1dp"
+        app:sub_corner_radius="10dp"
+        app:sub_ripple="true"
+        app:sub_ripple_color="@color/purple"
+        app:sub_ripple_mask="@mipmap/icon_star"
+        app:sub_ripple_mask_style="drawable" />
+
+    <com.github.layout.SubTextView
+        style="@style/itemRipple"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:text="无内容限制，无mask"
+        app:sub_ripple="true"
+        app:sub_ripple_color="@color/purple"
+        app:sub_ripple_mask_style="none" />
+
+</LinearLayout>

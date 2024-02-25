@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">PercentConstraintLayout</string>
+    <string name="shadow_tips">子控件自行兼容父控件\nshadow_radius + shadow_dx/shadow_dy</string>
 </resources>

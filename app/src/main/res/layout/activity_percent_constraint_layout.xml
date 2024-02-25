@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.layout.PercentConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pcl_running_count_down"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:fitsSystemWindows="true">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="PercentConstraintLayout(子控件按比例值排版位置，设置大小和边距)"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:percent_constraint_marginTop="10/1920" />
+
+    <com.github.layout.PercentConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:percent_constraint_marginEnd="60/1080"
+        app:percent_constraint_marginStart="20/1080"
+        app:percent_constraint_marginTop="452/1920"
+        app:sub_background_normal="@color/teal_200"
+        app:sub_background_pressed="@color/teal_700"
+        app:sub_border_color_normal="@color/purple_200"
+        app:sub_border_color_pressed="@color/purple_500"
+        app:sub_border_width_normal="5dp"
+        app:sub_border_width_pressed="5dp"
+        app:sub_corner_radius="50dp" />
+
+    <TextView
+        android:id="@+id/tv_running_count_down"
+        style="@style/PercentConstraintLayoutStyle"
+        android:background="@color/orange"
+        android:gravity="center"
+        android:text="原生居中文字"
+        android:textColor="#333333"
+        android:textSize="24sp"
+        app:percent_constraint_height="130/1920"
+        app:percent_constraint_radius="20dp"
+        app:percent_constraint_width="640/1080" />
+
+    <com.github.layout.SubTextView
+        style="@style/PercentConstraintLayoutStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="按钮选择器"
+        app:percent_constraint_height="130/1920"
+        app:percent_constraint_marginTop="1252/1920"
+        app:percent_constraint_width="620/1080"
+        app:sub_background_normal="@color/purple_200"
+        app:sub_background_pressed="@color/teal_700"
+        app:sub_corner_radius="10dp"
+        app:sub_text_color_normal="@color/white"
+        app:sub_text_color_pressed="@color/black" />
+
+</com.github.layout.PercentConstraintLayout>
