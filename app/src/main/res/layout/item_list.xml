@@ -15,7 +15,7 @@
         app:sub_shadow_color="#E91E63"
         app:sub_shadow_dx="5dp"
         app:sub_shadow_dy="5dp"
-        app:sub_shadow_radius="20dp">
+        app:sub_shadow_evaluation="20dp">
 
         <com.github.layout.SubTextView
             android:id="@+id/tv_text"

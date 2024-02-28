@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:percent_constraint_marginEnd="60/1080"
         app:percent_constraint_marginStart="20/1080"
-        app:percent_constraint_marginTop="452/1920"
+        app:percent_constraint_marginTop="352/1920"
         app:sub_background_normal="@color/teal_200"
         app:sub_background_pressed="@color/teal_700"
         app:sub_border_color_normal="@color/purple_200"
@@ -41,16 +41,37 @@
         app:sub_corner_radius="50dp" />
 
     <TextView
-        android:id="@+id/tv_running_count_down"
         style="@style/PercentConstraintLayoutStyle"
-        android:background="@color/orange"
+        android:background="@color/white"
         android:gravity="center"
         android:text="原生居中文字"
         android:textColor="#333333"
         android:textSize="24sp"
         app:percent_constraint_height="130/1920"
-        app:percent_constraint_radius="20dp"
-        app:percent_constraint_width="640/1080" />
+        app:percent_constraint_radius="10dp"
+        app:percent_constraint_width="640/1080"
+        app:percent_constraint_shadowColor="@color/navy"
+        app:percent_constraint_shadowDy="5dp"
+        app:percent_constraint_shadowDx="5dp"
+        app:percent_constraint_shadowEvaluation="10dp"/>
+
+    <com.github.layout.SubTextView
+        android:id="@+id/tv_running_count_down"
+        style="@style/PercentConstraintLayoutStyle"
+        android:gravity="center"
+        android:text="原生居中文字"
+        android:background="@color/white"
+        android:textColor="#333333"
+        android:textSize="24sp"
+        app:percent_constraint_height="150/1920"
+        app:percent_constraint_width="640/1080"
+        app:percent_constraint_marginTop="1250/1920"
+        app:sub_background_normal="@color/white"
+        app:sub_shadow_color="@color/navy"
+        app:sub_shadow_dy="5dp"
+        app:sub_shadow_dx="5dp"
+        app:sub_shadow_evaluation="10dp"
+        app:sub_corner_radius="10dp"/>
 
     <com.github.layout.SubTextView
         style="@style/PercentConstraintLayoutStyle"
@@ -61,7 +82,7 @@
         android:gravity="center"
         android:text="按钮选择器"
         app:percent_constraint_height="130/1920"
-        app:percent_constraint_marginTop="1252/1920"
+        app:percent_constraint_marginTop="1560/1920"
         app:percent_constraint_width="620/1080"
         app:sub_background_normal="@color/purple_200"
         app:sub_background_pressed="@color/teal_700"

@@ -83,7 +83,7 @@ public class SubImageViewHelper {
             setup();
             return;
         }
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SubImageViewAttrs);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SubImageView_Layout);
         //icon
         //Vector兼容处理
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -107,14 +107,14 @@ public class SubImageViewHelper {
                 mIconSelected = AppCompatResources.getDrawable(context, selectedId);*/
         }
         //基础属性
-        mIsCircle = a.getBoolean(R.styleable.SubImageViewAttrs_sub_is_circle, false);
-        mCorner = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius, -1);
-        mCornerTopLeft = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius_top_left, 0);
-        mCornerTopRight = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius_top_right, 0);
-        mCornerBottomLeft = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius_bottom_left, 0);
-        mCornerBottomRight = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius_bottom_right, 0);
-        mBorderWidth = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_border_width, 0);
-        mBorderColor = a.getColor(R.styleable.SubImageViewAttrs_sub_border_color, Color.BLACK);
+        mIsCircle = a.getBoolean(R.styleable.SubImageView_Layout_sub_is_circle, false);
+        mCorner = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius, -1);
+        mCornerTopLeft = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius_top_left, 0);
+        mCornerTopRight = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius_top_right, 0);
+        mCornerBottomLeft = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius_bottom_left, 0);
+        mCornerBottomRight = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius_bottom_right, 0);
+        mBorderWidth = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_border_width, 0);
+        mBorderColor = a.getColor(R.styleable.SubImageView_Layout_sub_border_color, Color.BLACK);
 
         a.recycle();
 

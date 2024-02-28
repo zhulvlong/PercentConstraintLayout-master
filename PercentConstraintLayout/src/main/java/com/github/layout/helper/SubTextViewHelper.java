@@ -129,42 +129,42 @@ public class SubTextViewHelper extends SubViewBaseHelper<TextView> implements IT
             setup();
             return;
         }
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SubTextViewAttrs);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SubTextView_Layout);
         //icon
         //自定义属性
-        mIconNormalLeft = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_normal_left);
-        mIconPressedLeft = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_pressed_left);
-        mIconUnableLeft = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_unable_left);
-        mIconSelectedLeft = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_selected_left);
-        mIconCheckedLeft = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_checked_left);
-        mIconNormalRight = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_normal_right);
-        mIconPressedRight = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_pressed_right);
-        mIconUnableRight = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_unable_right);
-        mIconSelectedRight = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_selected_right);
-        mIconCheckedRight = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_checked_right);
-        mIconNormalTop = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_normal_top);
-        mIconPressedTop = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_pressed_top);
-        mIconUnableTop = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_unable_top);
-        mIconSelectedTop = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_selected_top);
-        mIconCheckedTop = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_checked_top);
-        mIconNormalBottom = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_normal_bottom);
-        mIconPressedBottom = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_pressed_bottom);
-        mIconUnableBottom = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_unable_bottom);
-        mIconSelectedBottom = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_selected_bottom);
-        mIconCheckedBottom = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_checked_bottom);
+        mIconNormalLeft = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_normal_left);
+        mIconPressedLeft = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_pressed_left);
+        mIconUnableLeft = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_unable_left);
+        mIconSelectedLeft = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_selected_left);
+        mIconCheckedLeft = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_checked_left);
+        mIconNormalRight = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_normal_right);
+        mIconPressedRight = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_pressed_right);
+        mIconUnableRight = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_unable_right);
+        mIconSelectedRight = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_selected_right);
+        mIconCheckedRight = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_checked_right);
+        mIconNormalTop = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_normal_top);
+        mIconPressedTop = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_pressed_top);
+        mIconUnableTop = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_unable_top);
+        mIconSelectedTop = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_selected_top);
+        mIconCheckedTop = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_checked_top);
+        mIconNormalBottom = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_normal_bottom);
+        mIconPressedBottom = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_pressed_bottom);
+        mIconUnableBottom = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_unable_bottom);
+        mIconSelectedBottom = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_selected_bottom);
+        mIconCheckedBottom = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_checked_bottom);
         //兼容系统原生drawableLeft
-        Drawable drawableLeft = getDrawable(context, a, R.styleable.SubTextViewAttrs_android_drawableLeft);
-        Drawable drawableRight = getDrawable(context, a, R.styleable.SubTextViewAttrs_android_drawableRight);
-        Drawable drawableTop = getDrawable(context, a, R.styleable.SubTextViewAttrs_android_drawableTop);
-        Drawable drawableBottom = getDrawable(context, a, R.styleable.SubTextViewAttrs_android_drawableBottom);
-        Drawable drawableStart = getDrawable(context, a, R.styleable.SubTextViewAttrs_android_drawableStart);
-        Drawable drawableEnd = getDrawable(context, a, R.styleable.SubTextViewAttrs_android_drawableEnd);
+        Drawable drawableLeft = getDrawable(context, a, R.styleable.SubTextView_Layout_android_drawableLeft);
+        Drawable drawableRight = getDrawable(context, a, R.styleable.SubTextView_Layout_android_drawableRight);
+        Drawable drawableTop = getDrawable(context, a, R.styleable.SubTextView_Layout_android_drawableTop);
+        Drawable drawableBottom = getDrawable(context, a, R.styleable.SubTextView_Layout_android_drawableBottom);
+        Drawable drawableStart = getDrawable(context, a, R.styleable.SubTextView_Layout_android_drawableStart);
+        Drawable drawableEnd = getDrawable(context, a, R.styleable.SubTextView_Layout_android_drawableEnd);
         //版本兼容代码
-        mIconNormal = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_src_normal);
-        mIconPressed = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_src_pressed);
-        mIconUnable = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_src_unable);
-        mIconSelected = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_src_selected);
-        mIconChecked = getDrawable(context, a, R.styleable.SubTextViewAttrs_sub_icon_src_checked);
+        mIconNormal = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_src_normal);
+        mIconPressed = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_src_pressed);
+        mIconUnable = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_src_unable);
+        mIconSelected = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_src_selected);
+        mIconChecked = getDrawable(context, a, R.styleable.SubTextView_Layout_sub_icon_src_checked);
         //兼容逻辑(优先级 drawableStart > drawableLeft > icon_normal_left)
         if (!isRtl()) {
             if (drawableStart != null) drawableLeft = drawableStart;
@@ -179,29 +179,29 @@ public class SubTextViewHelper extends SubViewBaseHelper<TextView> implements IT
         if (drawableBottom != null) mIconNormalBottom = drawableBottom;
 
         //icon-size
-        mIconWidthLeft = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_width_left, 0);
-        mIconHeightLeft = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_height_left, 0);
-        mIconWidthRight = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_width_right, 0);
-        mIconHeightRight = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_height_right, 0);
-        mIconWidthBottom = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_width_bottom, 0);
-        mIconHeightBottom = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_height_bottom, 0);
-        mIconWidthTop = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_width_top, 0);
-        mIconHeightTop = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_height_top, 0);
+        mIconWidthLeft = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_width_left, 0);
+        mIconHeightLeft = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_height_left, 0);
+        mIconWidthRight = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_width_right, 0);
+        mIconHeightRight = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_height_right, 0);
+        mIconWidthBottom = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_width_bottom, 0);
+        mIconHeightBottom = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_height_bottom, 0);
+        mIconWidthTop = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_width_top, 0);
+        mIconHeightTop = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_height_top, 0);
         //老版本兼容代码
-        mIconWidth = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_width, 0);
-        mIconHeight = a.getDimensionPixelSize(R.styleable.SubTextViewAttrs_sub_icon_height, 0);
-        mIconDirection = a.getInt(R.styleable.SubTextViewAttrs_sub_icon_direction, ICON_DIR_LEFT);
+        mIconWidth = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_width, 0);
+        mIconHeight = a.getDimensionPixelSize(R.styleable.SubTextView_Layout_sub_icon_height, 0);
+        mIconDirection = a.getInt(R.styleable.SubTextView_Layout_sub_icon_direction, ICON_DIR_LEFT);
 
         //text
-        mTextColorNormal = a.getColor(R.styleable.SubTextViewAttrs_sub_text_color_normal, mView.getCurrentTextColor());
-        mTextColorPressed = a.getColor(R.styleable.SubTextViewAttrs_sub_text_color_pressed, _C);
-        mTextColorUnable = a.getColor(R.styleable.SubTextViewAttrs_sub_text_color_unable, _C);
-        mTextColorSelected = a.getColor(R.styleable.SubTextViewAttrs_sub_text_color_selected, _C);
-        mTextColorChecked = a.getColor(R.styleable.SubTextViewAttrs_sub_text_color_checked, _C);
+        mTextColorNormal = a.getColor(R.styleable.SubTextView_Layout_sub_text_color_normal, mView.getCurrentTextColor());
+        mTextColorPressed = a.getColor(R.styleable.SubTextView_Layout_sub_text_color_pressed, _C);
+        mTextColorUnable = a.getColor(R.styleable.SubTextView_Layout_sub_text_color_unable, _C);
+        mTextColorSelected = a.getColor(R.styleable.SubTextView_Layout_sub_text_color_selected, _C);
+        mTextColorChecked = a.getColor(R.styleable.SubTextView_Layout_sub_text_color_checked, _C);
         //typeface
-        mTypefacePath = a.getString(R.styleable.SubTextViewAttrs_sub_text_typeface);
+        mTypefacePath = a.getString(R.styleable.SubTextView_Layout_sub_text_typeface);
         //drawableWithText
-        mDrawableWithText = a.getBoolean(R.styleable.SubTextViewAttrs_sub_icon_with_text, false);
+        mDrawableWithText = a.getBoolean(R.styleable.SubTextView_Layout_sub_icon_with_text, false);
 
         a.recycle();
 

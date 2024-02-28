@@ -187,72 +187,72 @@ public class SubViewBaseHelper<T extends View> implements IClip, ViewTreeObserve
             setup();
             return;
         }
-        TypedArray a = mView.getContext().obtainStyledAttributes(attrs, R.styleable.SubBaseViewAttrs);
+        TypedArray a = mView.getContext().obtainStyledAttributes(attrs, R.styleable.SubBaseView_Layout);
         //corner
-        mCornerRadius = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_corner_radius, -1);
-        mCornerRadiusTopLeft = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_corner_radius_top_left, 0);
-        mCornerRadiusTopRight = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_corner_radius_top_right, 0);
-        mCornerRadiusBottomLeft = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_corner_radius_bottom_left, 0);
-        mCornerRadiusBottomRight = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_corner_radius_bottom_right, 0);
+        mCornerRadius = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_corner_radius, -1);
+        mCornerRadiusTopLeft = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_corner_radius_top_left, 0);
+        mCornerRadiusTopRight = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_corner_radius_top_right, 0);
+        mCornerRadiusBottomLeft = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_corner_radius_bottom_left, 0);
+        mCornerRadiusBottomRight = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_corner_radius_bottom_right, 0);
         //border
-        mBorderDashWidth = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_border_dash_width, _S);
-        mBorderDashGap = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_border_dash_gap, _S);
-        mBorderWidthNormal = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_border_width_normal, _S);
-        mBorderWidthPressed = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_border_width_pressed, _S);
-        mBorderWidthUnable = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_border_width_unable, _S);
-        mBorderWidthChecked = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_border_width_checked, _S);
-        mBorderWidthSelected = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_border_width_selected, _S);
-        mBorderColorNormal = a.getColor(R.styleable.SubBaseViewAttrs_sub_border_color_normal, _C);
-        mBorderColorPressed = a.getColor(R.styleable.SubBaseViewAttrs_sub_border_color_pressed, _C);
-        mBorderColorUnable = a.getColor(R.styleable.SubBaseViewAttrs_sub_border_color_unable, _C);
-        mBorderColorChecked = a.getColor(R.styleable.SubBaseViewAttrs_sub_border_color_checked, _C);
-        mBorderColorSelected = a.getColor(R.styleable.SubBaseViewAttrs_sub_border_color_selected, _C);
+        mBorderDashWidth = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_border_dash_width, _S);
+        mBorderDashGap = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_border_dash_gap, _S);
+        mBorderWidthNormal = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_border_width_normal, _S);
+        mBorderWidthPressed = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_border_width_pressed, _S);
+        mBorderWidthUnable = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_border_width_unable, _S);
+        mBorderWidthChecked = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_border_width_checked, _S);
+        mBorderWidthSelected = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_border_width_selected, _S);
+        mBorderColorNormal = a.getColor(R.styleable.SubBaseView_Layout_sub_border_color_normal, _C);
+        mBorderColorPressed = a.getColor(R.styleable.SubBaseView_Layout_sub_border_color_pressed, _C);
+        mBorderColorUnable = a.getColor(R.styleable.SubBaseView_Layout_sub_border_color_unable, _C);
+        mBorderColorChecked = a.getColor(R.styleable.SubBaseView_Layout_sub_border_color_checked, _C);
+        mBorderColorSelected = a.getColor(R.styleable.SubBaseView_Layout_sub_border_color_selected, _C);
         //background
         //normal
-        Object[] bgInfoNormal = getBackgroundInfo(a, R.styleable.SubBaseViewAttrs_sub_background_normal);
+        Object[] bgInfoNormal = getBackgroundInfo(a, R.styleable.SubBaseView_Layout_sub_background_normal);
         mBackgroundColorNormal = (int) bgInfoNormal[1];
         mBackgroundColorNormalArray = (int[]) bgInfoNormal[2];
         mBackgroundNormalBmp = (Drawable) bgInfoNormal[3];
         //pressed
-        Object[] bgInfoPressed = getBackgroundInfo(a, R.styleable.SubBaseViewAttrs_sub_background_pressed);
+        Object[] bgInfoPressed = getBackgroundInfo(a, R.styleable.SubBaseView_Layout_sub_background_pressed);
         mBackgroundColorPressed = (int) bgInfoPressed[1];
         mBackgroundColorPressedArray = (int[]) bgInfoPressed[2];
         mBackgroundPressedBmp = (Drawable) bgInfoPressed[3];
         //unable
-        Object[] bgInfoUnable = getBackgroundInfo(a, R.styleable.SubBaseViewAttrs_sub_background_unable);
+        Object[] bgInfoUnable = getBackgroundInfo(a, R.styleable.SubBaseView_Layout_sub_background_unable);
         mBackgroundColorUnable = (int) bgInfoUnable[1];
         mBackgroundColorUnableArray = (int[]) bgInfoUnable[2];
         mBackgroundUnableBmp = (Drawable) bgInfoUnable[3];
         //checked
-        Object[] bgInfoChecked = getBackgroundInfo(a, R.styleable.SubBaseViewAttrs_sub_background_checked);
+        Object[] bgInfoChecked = getBackgroundInfo(a, R.styleable.SubBaseView_Layout_sub_background_checked);
         mBackgroundColorChecked = (int) bgInfoChecked[1];
         mBackgroundColorCheckedArray = (int[]) bgInfoChecked[2];
         mBackgroundCheckedBmp = (Drawable) bgInfoChecked[3];
         //selected
-        Object[] bgInfoSelected = getBackgroundInfo(a, R.styleable.SubBaseViewAttrs_sub_background_selected);
+        Object[] bgInfoSelected = getBackgroundInfo(a, R.styleable.SubBaseView_Layout_sub_background_selected);
         mBackgroundColorSelected = (int) bgInfoSelected[1];
         mBackgroundColorSelectedArray = (int[]) bgInfoSelected[2];
         mBackgroundSelectedBmp = (Drawable) bgInfoSelected[3];
         //gradient
-        mGradientType = a.getInt(R.styleable.SubBaseViewAttrs_sub_gradient_type, 0);
+        mGradientType = a.getInt(R.styleable.SubBaseView_Layout_sub_gradient_type, 0);
         mGradientOrientation = getGradientOrientation(a);
-        mGradientRadius = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_gradient_radius, -1);
-        mGradientCenterX = a.getFloat(R.styleable.SubBaseViewAttrs_sub_gradient_centerX, 0.5f);
-        mGradientCenterY = a.getFloat(R.styleable.SubBaseViewAttrs_sub_gradient_centerY, 0.5f);
+        mGradientRadius = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_gradient_radius, -1);
+        mGradientCenterX = a.getFloat(R.styleable.SubBaseView_Layout_sub_gradient_centerX, 0.5f);
+        mGradientCenterY = a.getFloat(R.styleable.SubBaseView_Layout_sub_gradient_centerY, 0.5f);
         //enabled
-        mIsEnabled = a.getBoolean(R.styleable.SubBaseViewAttrs_sub_enabled, true);
+        mIsEnabled = a.getBoolean(R.styleable.SubBaseView_Layout_sub_enabled, true);
         //Ripple
-        mUseRipple = a.getBoolean(R.styleable.SubBaseViewAttrs_sub_ripple, false);
-        mRippleColor = a.getColor(R.styleable.SubBaseViewAttrs_sub_ripple_color, Color.RED);
-        mRippleMaskDrawable = a.getDrawable(R.styleable.SubBaseViewAttrs_sub_ripple_mask);
-        mRippleMaskStyle = a.getInt(R.styleable.SubBaseViewAttrs_sub_ripple_mask_style, MASK_STYLE_NORMAL);
+        mUseRipple = a.getBoolean(R.styleable.SubBaseView_Layout_sub_ripple, false);
+        mRippleColor = a.getColor(R.styleable.SubBaseView_Layout_sub_ripple_color, Color.RED);
+        mRippleMaskDrawable = a.getDrawable(R.styleable.SubBaseView_Layout_sub_ripple_mask);
+        mRippleMaskStyle = a.getInt(R.styleable.SubBaseView_Layout_sub_ripple_mask_style, MASK_STYLE_NORMAL);
         //shadow
-        mShadowDx = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_shadow_dx, 0);
-        mShadowDy = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_shadow_dy, 0);
-        mShadowColor = a.getColor(R.styleable.SubBaseViewAttrs_sub_shadow_color, Color.GRAY);
-        mShadowRadius = a.getDimensionPixelSize(R.styleable.SubBaseViewAttrs_sub_shadow_radius, -1);
+        mShadowDx = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_shadow_dx, 0);
+        mShadowDy = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_shadow_dy, 0);
+        mShadowColor = a.getColor(R.styleable.SubBaseView_Layout_sub_shadow_color, Color.GRAY);
+        mShadowRadius = a.getDimensionPixelSize(R.styleable.SubBaseView_Layout_sub_shadow_evaluation, -1);
         //clip
-        mClipLayout = a.getBoolean(R.styleable.SubBaseViewAttrs_sub_clip_layout, false);
+        mClipLayout = a.getBoolean(R.styleable.SubBaseView_Layout_sub_clip_layout, false);
 
         a.recycle();
 
@@ -1548,7 +1548,7 @@ public class SubViewBaseHelper<T extends View> implements IClip, ViewTreeObserve
      */
     private GradientDrawable.Orientation getGradientOrientation(TypedArray a) {
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.BL_TR;
-        int gradientOrientation = a.getInt(R.styleable.SubBaseViewAttrs_sub_gradient_orientation, 0);
+        int gradientOrientation = a.getInt(R.styleable.SubBaseView_Layout_sub_gradient_orientation, 0);
         switch (gradientOrientation) {
             case 0:
                 orientation = GradientDrawable.Orientation.TOP_BOTTOM;

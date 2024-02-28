@@ -64,15 +64,15 @@ public class SubImageView extends AppCompatImageView {
     private void initAttributeSet(Context context, AttributeSet attrs) {
         if (context == null || attrs == null) return;
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SubImageViewAttrs);
-        mIsCircle = a.getBoolean(R.styleable.SubImageViewAttrs_sub_is_circle, false);
-        mCorner = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius, -1);
-        mCornerTopLeft = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius_top_left, 0);
-        mCornerTopRight = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius_top_right, 0);
-        mCornerBottomLeft = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius_bottom_left, 0);
-        mCornerBottomRight = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_corner_radius_bottom_right, 0);
-        mBorderWidth = a.getDimensionPixelSize(R.styleable.SubImageViewAttrs_sub_border_width, 0);
-        mBorderColor = a.getColor(R.styleable.SubImageViewAttrs_sub_border_color, Color.BLACK);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SubImageView_Layout);
+        mIsCircle = a.getBoolean(R.styleable.SubImageView_Layout_sub_is_circle, false);
+        mCorner = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius, -1);
+        mCornerTopLeft = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius_top_left, 0);
+        mCornerTopRight = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius_top_right, 0);
+        mCornerBottomLeft = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius_bottom_left, 0);
+        mCornerBottomRight = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_corner_radius_bottom_right, 0);
+        mBorderWidth = a.getDimensionPixelSize(R.styleable.SubImageView_Layout_sub_border_width, 0);
+        mBorderColor = a.getColor(R.styleable.SubImageView_Layout_sub_border_color, Color.BLACK);
 
         //get system attrs
         String namespace = "http://schemas.android.com/apk/res/android";//android的命名空间

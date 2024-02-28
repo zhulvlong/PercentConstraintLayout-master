@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--为了方便扩展其他layout，定义在外层，命名以layout_开头，否则lint会报红警告-->
+    <!--**************************PercentConstraintLayout:基础通用属性声明***************************-->
+    <!--①为了方便扩展其他layout，属性定义在外层，命名以percent_constraint_开头，否则lint会报红警告-->
     <attr name="percent_constraint_radius" format="dimension|reference" /><!--圆角大小-->
     <attr name="percent_constraint_radiusLeftTop" format="dimension|reference" /><!--左上圆角大小-->
     <attr name="percent_constraint_radiusRightTop" format="dimension|reference" /><!--右上圆角大小-->
     <attr name="percent_constraint_radiusRightBottom" format="dimension|reference" /><!--左下圆角大小-->
     <attr name="percent_constraint_radiusLeftBottom" format="dimension|reference" /><!--右下圆角大小-->
-
     <attr name="percent_constraint_shadowColor" format="color|reference" /><!--阴影颜色-->
     <attr name="percent_constraint_shadowEvaluation" format="dimension|reference" /><!--阴影大小-->
     <attr name="percent_constraint_shadowDx" format="dimension|reference" /><!--阴影偏移X-->
     <attr name="percent_constraint_shadowDy" format="dimension|reference" /><!--阴影偏移Y-->
-
-    <!--下面的这些百分比属性必须设置左右约束/上下约束才会生效-->
+    <!--下面的这些百分比属性必须设置width和height为0dp才会生效-->
     <attr name="percent_constraint_width" format="string" />
     <attr name="percent_constraint_height" format="string" />
+    <!--下面的这些百分比属性必须设置左右约束/上下约束才会生效-->
     <attr name="percent_constraint_marginLeft" format="string" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
     <attr name="percent_constraint_marginRight" format="string" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
     <attr name="percent_constraint_marginStart" format="string" /><!--控件先对容器(ConstraintLayout)左边距和容器宽度的百分比-->
@@ -22,71 +22,7 @@
     <attr name="percent_constraint_marginTop" format="string" /><!--控件先对容器(ConstraintLayout)上边距和容器高度的百分比-->
     <attr name="percent_constraint_marginBottom" format="string" /><!--控件先对容器(ConstraintLayout)下边距和容器高度的百分比-->
 
-    <!--用统一一个PercentLayout，用于封装读取自定义属性-->
-    <declare-styleable name="PercentLayout">
-        <attr name="percent_constraint_radius" />
-        <attr name="percent_constraint_radiusLeftTop" />
-        <attr name="percent_constraint_radiusRightTop" />
-        <attr name="percent_constraint_radiusRightBottom" />
-        <attr name="percent_constraint_radiusLeftBottom" />
-        <attr name="percent_constraint_shadowColor" />
-        <attr name="percent_constraint_shadowEvaluation" />
-        <attr name="percent_constraint_shadowDx" />
-        <attr name="percent_constraint_shadowDy" />
-        <attr name="percent_constraint_width" />
-        <attr name="percent_constraint_height" />
-        <attr name="percent_constraint_marginLeft" />
-        <attr name="percent_constraint_marginRight" />
-        <attr name="percent_constraint_marginTop" />
-        <attr name="percent_constraint_marginBottom" />
-        <attr name="percent_constraint_marginStart" />
-        <attr name="percent_constraint_marginEnd" />
-    </declare-styleable>
-    <declare-styleable name="PercentLinearLayout_Layout">
-        <attr name="percent_constraint_radius" />
-        <attr name="percent_constraint_radiusLeftTop" />
-        <attr name="percent_constraint_radiusRightTop" />
-        <attr name="percent_constraint_radiusRightBottom" />
-        <attr name="percent_constraint_radiusLeftBottom" />
-        <attr name="percent_constraint_shadowColor" />
-        <attr name="percent_constraint_shadowEvaluation" />
-        <attr name="percent_constraint_shadowDx" />
-        <attr name="percent_constraint_shadowDy" />
-        <attr name="percent_constraint_width" />
-        <attr name="percent_constraint_height" />
-        <attr name="percent_constraint_marginLeft" />
-        <attr name="percent_constraint_marginRight" />
-        <attr name="percent_constraint_marginTop" />
-        <attr name="percent_constraint_marginBottom" />
-        <attr name="percent_constraint_marginStart" />
-        <attr name="percent_constraint_marginEnd" />
-    </declare-styleable>
-
-    <!--和PercentLayout属性列表一样，但是命名要以XXX_Layout格式，这样开发工具会提示自定义属性-->
-    <declare-styleable name="PercentConstraintLayout_Layout">
-        <attr name="percent_constraint_radius" />
-        <attr name="percent_constraint_radiusLeftTop" />
-        <attr name="percent_constraint_radiusRightTop" />
-        <attr name="percent_constraint_radiusRightBottom" />
-        <attr name="percent_constraint_radiusLeftBottom" />
-        <attr name="percent_constraint_shadowColor" />
-        <attr name="percent_constraint_shadowEvaluation" />
-        <attr name="percent_constraint_shadowDx" />
-        <attr name="percent_constraint_shadowDy" />
-        <attr name="percent_constraint_width" />
-        <attr name="percent_constraint_height" />
-        <attr name="percent_constraint_marginLeft" />
-        <attr name="percent_constraint_marginRight" />
-        <attr name="percent_constraint_marginTop" />
-        <attr name="percent_constraint_marginBottom" />
-        <attr name="percent_constraint_marginStart" />
-        <attr name="percent_constraint_marginEnd" />
-    </declare-styleable>
-
-    <!--*****************************************************************************************-->
-
-    <!--SubWidgetHelper:基础通用属性-->
-
+    <!--****************************SubWidgetHelper:基础通用属性声明********************************-->
     <!--四周圆角度、左上、右上、左下、右下-->
     <attr name="sub_corner_radius" format="dimension" />
     <attr name="sub_corner_radius_top_left" format="dimension" />
@@ -220,13 +156,14 @@
     <attr name="sub_shadow_dx" format="dimension" />
     <attr name="sub_shadow_dy" format="dimension" />
     <attr name="sub_shadow_color" format="color" />
-    <attr name="sub_shadow_radius" format="dimension" />
+    <attr name="sub_shadow_evaluation" format="dimension" />
 
     <!--是否裁剪布局-->
     <attr name="sub_clip_layout" format="boolean" />
 
-    <!--所有Sub开头的自定义控件通用属性-->
-    <declare-styleable name="SubBaseViewAttrs">
+    <!--***********************************自定义属性读取*******************************************-->
+    <!--所有Sub开头的自定义控件通用属性封装读取自定义属性-->
+    <declare-styleable name="SubBaseView_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -280,14 +217,92 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
+
+        <!--clipLayout-->
+        <attr name="sub_clip_layout" />
+    </declare-styleable>
+
+    <!--②用统一一个PercentConstraintLayout_Layout，用于封装读取自定义属性-->
+    <!--但是命名要以“控件名_Layout”格式，这样开发工具会智能提示自定义属性值-->
+    <!--PercentConstraintLayout-->
+    <declare-styleable name="PercentConstraintLayout_Layout">
+        <!--PercentConstraintLayout属性-->
+        <attr name="percent_constraint_radius" />
+        <attr name="percent_constraint_radiusLeftTop" />
+        <attr name="percent_constraint_radiusRightTop" />
+        <attr name="percent_constraint_radiusRightBottom" />
+        <attr name="percent_constraint_radiusLeftBottom" />
+        <attr name="percent_constraint_shadowColor" />
+        <attr name="percent_constraint_shadowEvaluation" />
+        <attr name="percent_constraint_shadowDx" />
+        <attr name="percent_constraint_shadowDy" />
+        <attr name="percent_constraint_width" />
+        <attr name="percent_constraint_height" />
+        <attr name="percent_constraint_marginLeft" />
+        <attr name="percent_constraint_marginRight" />
+        <attr name="percent_constraint_marginTop" />
+        <attr name="percent_constraint_marginBottom" />
+        <attr name="percent_constraint_marginStart" />
+        <attr name="percent_constraint_marginEnd" />
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_evaluation" />
 
         <!--clipLayout-->
         <attr name="sub_clip_layout" />
     </declare-styleable>
 
     <!-- SubTextView -->
-    <declare-styleable name="SubTextViewAttrs">
+    <declare-styleable name="SubTextView_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -401,11 +416,11 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
     </declare-styleable>
 
     <!-- SubEditText -->
-    <declare-styleable name="SubEditTextAttrs">
+    <declare-styleable name="SubEditText_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -507,11 +522,11 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
     </declare-styleable>
 
     <!-- SubImageView -->
-    <declare-styleable name="SubImageViewAttrs">
+    <declare-styleable name="SubImageView_Layout">
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
         <attr name="sub_corner_radius_top_left" />
@@ -528,7 +543,7 @@
     </declare-styleable>
 
     <!-- SubLinearLayout -->
-    <declare-styleable name="SubLinearLayoutAttrs">
+    <declare-styleable name="SubLinearLayout_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -579,14 +594,14 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
 
         <!--clipLayout-->
         <attr name="sub_clip_layout" />
     </declare-styleable>
 
     <!-- SubRelativeLayout -->
-    <declare-styleable name="SubRelativeLayoutAttrs">
+    <declare-styleable name="SubRelativeLayout_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -637,14 +652,14 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
 
         <!--clipLayout-->
         <attr name="sub_clip_layout" />
     </declare-styleable>
 
     <!-- SubFrameLayout -->
-    <declare-styleable name="SubFrameLayoutAttrs">
+    <declare-styleable name="SubFrameLayout_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -695,72 +710,14 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
-
-        <!--clipLayout-->
-        <attr name="sub_clip_layout" />
-    </declare-styleable>
-
-    <!-- PercentConstraintLayout -->
-    <declare-styleable name="PercentConstraintLayoutAttrs">
-
-        <!--四周圆角度、左上、右上、左下、右下-->
-        <attr name="sub_corner_radius" />
-        <attr name="sub_corner_radius_top_left" />
-        <attr name="sub_corner_radius_top_right" />
-        <attr name="sub_corner_radius_bottom_left" />
-        <attr name="sub_corner_radius_bottom_right" />
-
-        <!--虚线边框宽度/间隔-->
-        <attr name="sub_border_dash_width" />
-        <attr name="sub_border_dash_gap" />
-
-        <!--边框宽度-->
-        <attr name="sub_border_width_normal" />
-        <attr name="sub_border_width_pressed" />
-        <attr name="sub_border_width_unable" />
-        <attr name="sub_border_width_selected" />
-
-        <!--边框颜色-->
-        <attr name="sub_border_color_normal" />
-        <attr name="sub_border_color_pressed" />
-        <attr name="sub_border_color_unable" />
-        <attr name="sub_border_color_selected" />
-
-        <!--背景颜色-->
-        <attr name="sub_background_normal" />
-        <attr name="sub_background_pressed" />
-        <attr name="sub_background_unable" />
-        <attr name="sub_background_selected" />
-
-        <!--Gradient相关-->
-        <attr name="sub_gradient_orientation" />
-        <attr name="sub_gradient_type" />
-        <attr name="sub_gradient_radius" />
-        <attr name="sub_gradient_centerX" />
-        <attr name="sub_gradient_centerY" />
-
-        <!--是否可用-->
-        <attr name="sub_enabled" />
-
-        <!--ripple-->
-        <attr name="sub_ripple" />
-        <attr name="sub_ripple_color" />
-        <attr name="sub_ripple_mask" />
-        <attr name="sub_ripple_mask_style" />
-
-        <!--shadow-->
-        <attr name="sub_shadow_dx" />
-        <attr name="sub_shadow_dy" />
-        <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
 
         <!--clipLayout-->
         <attr name="sub_clip_layout" />
     </declare-styleable>
 
     <!-- SubView -->
-    <declare-styleable name="SubViewAttrs">
+    <declare-styleable name="SubView_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -811,11 +768,11 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
     </declare-styleable>
 
     <!-- SubRadioButton -->
-    <declare-styleable name="SubRadioButtonAttrs">
+    <declare-styleable name="SubRadioButton_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -922,11 +879,11 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
     </declare-styleable>
 
     <!-- SubCheckBox -->
-    <declare-styleable name="SubCheckBoxAttrs">
+    <declare-styleable name="SubCheckBox_Layout">
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />
@@ -1033,7 +990,7 @@
         <attr name="sub_shadow_dx" />
         <attr name="sub_shadow_dy" />
         <attr name="sub_shadow_color" />
-        <attr name="sub_shadow_radius" />
+        <attr name="sub_shadow_evaluation" />
     </declare-styleable>
 
 </resources>
