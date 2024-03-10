@@ -4,7 +4,7 @@
 
 ```
 dependencies {
-	        implementation 'com.github.zhulvlong:PercentConstraintLayout-master:2.0.0'
+	        implementation 'com.github.zhulvlong:PercentConstraintLayout-master:3.0.3'
 	}
 ```
 for AndroidX
