@@ -35,7 +35,7 @@ android.enableJetifier=true
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_marginTopCP="552/1600" />
+        app:percent_constraint_marginTop="552/1600" />
     
 </com.github.layout.PercentConstraintLayout>
 ```
