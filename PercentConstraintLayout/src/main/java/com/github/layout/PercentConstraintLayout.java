@@ -219,10 +219,25 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
             PercentLayoutParams elp = (PercentLayoutParams) lp;
             PercentLayoutParamsData data = elp.getData();
             if (isInEditMode()) {//预览模式采用裁剪
-                canvas.save();
-                canvas.clipPath(data.widgetPath);
-                ret = super.drawChild(canvas, child, drawingTime);
-                canvas.restore();
+                if (data.hasShadow) {
+                    int count = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
+                    shadowPaint.setShadowLayer(data.shadowEvaluation, data.shadowDx, data.shadowDy, data.shadowColor);
+                    shadowPaint.setColor(data.shadowColor);
+                    canvas.drawPath(data.widgetPath, shadowPaint);
+                    shadowPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                    shadowPaint.setColor(Color.WHITE);
+                    canvas.drawPath(data.widgetPath, shadowPaint);
+                    shadowPaint.setXfermode(null);
+                    canvas.restoreToCount(count);
+                }
+                if (data.needClip) {
+                    canvas.save();
+                    canvas.clipPath(data.widgetPath);
+                    ret = super.drawChild(canvas, child, drawingTime);
+                    canvas.restore();
+                } else {
+                    ret = super.drawChild(canvas, child, drawingTime);
+                }
                 return ret;
             }
             if (!data.hasShadow && !data.needClip) {
@@ -244,6 +259,7 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
             if (data.needClip) {
                 int count = canvas.saveLayer(child.getLeft(), child.getTop(), child.getRight(), child.getBottom(), null, Canvas.ALL_SAVE_FLAG);
                 ret = super.drawChild(canvas, child, drawingTime);
+                // PorterDuff.Mode.CLEAR 擦除子控件的四个角，露出圆角效果
                 clipPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 clipPaint.setColor(Color.WHITE);
                 canvas.drawPath(data.clipPath, clipPaint);

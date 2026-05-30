@@ -18,8 +18,17 @@ public class PercentLayoutParamsData {
     int shadowDx;
     int shadowDy;
     int shadowEvaluation;
+    /**
+     * 控件矩形 （widgetRect = widgetPath + clipPath）
+     */
     RectF widgetRect;
+    /**
+     * 控件圆角矩形 路径
+     */
     Path widgetPath;
+    /**
+     * 外矩形减去内圆角矩形" 的形状，即控件四个角区域
+     */
     Path clipPath;
     boolean needClip;
     boolean hasShadow;
