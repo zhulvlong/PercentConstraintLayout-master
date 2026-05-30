@@ -207,8 +207,6 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
                 PercentLayoutParams elp = (PercentLayoutParams) lp;
                 PercentLayoutParamsData data = elp.getData();
                 data.initPaths(v);
-                ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) lp;
-                v.setLayoutParams(layoutParams);
             }
         }
     }
