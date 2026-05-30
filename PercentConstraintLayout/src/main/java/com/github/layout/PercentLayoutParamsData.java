@@ -41,6 +41,12 @@ public class PercentLayoutParamsData {
     float layout_marginBottomPercent;
     float layout_marginStartPercent;
     float layout_marginEndPercent;
+    float layout_paddingLeftPercent;
+    float layout_paddingRightPercent;
+    float layout_paddingTopPercent;
+    float layout_paddingBottomPercent;
+    float layout_paddingStartPercent;
+    float layout_paddingEndPercent;
 
     public PercentLayoutParamsData(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PercentConstraintLayout_Layout);
@@ -62,6 +68,12 @@ public class PercentLayoutParamsData {
         layout_marginBottomPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_marginBottom);
         layout_marginStartPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_marginStart);
         layout_marginEndPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_marginEnd);
+        layout_paddingLeftPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_paddingLeft);
+        layout_paddingRightPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_paddingRight);
+        layout_paddingTopPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_paddingTop);
+        layout_paddingBottomPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_paddingBottom);
+        layout_paddingStartPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_paddingStart);
+        layout_paddingEndPercent = getPercent(a, R.styleable.PercentConstraintLayout_Layout_percent_constraint_paddingEnd);
 
         a.recycle();
         if (radius > 0 || roundLT > 0 || roundRT > 0 || roundRB > 0 || roundLB > 0) {
@@ -125,12 +137,27 @@ public class PercentLayoutParamsData {
     }
 
     private static float getPercent(TypedArray array, int index) {
-        float percent = 0;
         String percentStr = array.getString(index);
-        if (percentStr != null && percentStr.contains("/")) {
-            String[] split = percentStr.split("/");
-            percent = Float.valueOf(split[0]) / Float.valueOf(split[1]);
+        if (percentStr == null || !percentStr.contains("/")) {
+            return 0;
         }
-        return percent;
+        String[] split = percentStr.split("/");
+        if (split.length != 2) {
+            return 0;
+        }
+        try {
+            float numerator = Float.parseFloat(split[0].trim());
+            float denominator = Float.parseFloat(split[1].trim());
+            if (denominator == 0) {
+                return 0;
+            }
+            float percent = numerator / denominator;
+            if (Float.isNaN(percent) || Float.isInfinite(percent)) {
+                return 0;
+            }
+            return percent;
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 }

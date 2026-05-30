@@ -21,6 +21,12 @@
     <attr name="percent_constraint_marginEnd" format="string" /><!--控件先对容器(ConstraintLayout)右边距和容器宽度的百分比-->
     <attr name="percent_constraint_marginTop" format="string" /><!--控件先对容器(ConstraintLayout)上边距和容器高度的百分比-->
     <attr name="percent_constraint_marginBottom" format="string" /><!--控件先对容器(ConstraintLayout)下边距和容器高度的百分比-->
+    <attr name="percent_constraint_paddingLeft" format="string" /><!--控件左内边距和容器(ConstraintLayout)宽度的百分比-->
+    <attr name="percent_constraint_paddingRight" format="string" /><!--控件右内边距和容器(ConstraintLayout)宽度的百分比-->
+    <attr name="percent_constraint_paddingStart" format="string" /><!--控件左内边距和容器(ConstraintLayout)宽度的百分比-->
+    <attr name="percent_constraint_paddingEnd" format="string" /><!--控件右内边距和容器(ConstraintLayout)宽度的百分比-->
+    <attr name="percent_constraint_paddingTop" format="string" /><!--控件上内边距和容器(ConstraintLayout)高度的百分比-->
+    <attr name="percent_constraint_paddingBottom" format="string" /><!--控件下内边距和容器(ConstraintLayout)高度的百分比-->
 
     <!--****************************SubWidgetHelper:基础通用属性声明********************************-->
     <!--四周圆角度、左上、右上、左下、右下-->
@@ -245,6 +251,12 @@
         <attr name="percent_constraint_marginBottom" />
         <attr name="percent_constraint_marginStart" />
         <attr name="percent_constraint_marginEnd" />
+        <attr name="percent_constraint_paddingLeft" />
+        <attr name="percent_constraint_paddingRight" />
+        <attr name="percent_constraint_paddingStart" />
+        <attr name="percent_constraint_paddingEnd" />
+        <attr name="percent_constraint_paddingTop" />
+        <attr name="percent_constraint_paddingBottom" />
 
         <!--四周圆角度、左上、右上、左下、右下-->
         <attr name="sub_corner_radius" />

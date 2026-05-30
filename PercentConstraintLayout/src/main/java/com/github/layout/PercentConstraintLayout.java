@@ -6,12 +6,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.github.layout.helper.SubViewBaseHelper;
@@ -44,7 +42,6 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
         clipPaint.setDither(true);
         clipPaint.setFilterBitmap(true);
         clipPaint.setStyle(Paint.Style.FILL);
-        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
     @Override
@@ -78,7 +75,6 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
      * @param widthMeasureSpec
      * @param heightMeasureSpec
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         // 获取原始的MeasureSpec模式和大小
@@ -98,6 +94,7 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
         int paddingRight = getPaddingRight() != 0 ? getPaddingRight() : getPaddingEnd();
         int paddingTop = getPaddingTop();
         int paddingBottom = getPaddingBottom();
+        boolean hasShadowChild = false;
         for (int i = 0, size = childCount; i < size; i++) {
             PercentLayoutViewParams childViewParams = new PercentLayoutViewParams();
             View childView = getChildAt(i);
@@ -106,9 +103,12 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
             int childViewHeight = childView.getMeasuredHeight();
             if (checkLayoutParams(lp)) {
                 PercentLayoutParams elp = (PercentLayoutParams) lp;
-                childViewParams.initParams(elp.getData());
-                ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) childView.getLayoutParams();
+                PercentLayoutParamsData data = elp.getData();
+                hasShadowChild |= data.hasShadow;
+                childViewParams.initParams(data);
+                ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) lp;
 
+                setPaddingPercent(parentWidth, parentHeight, childViewParams, childView);
                 childViewWidth = setWidthPercent(parentWidth, childViewParams, childViewWidth, layoutParams);
                 childViewHeight = setHeightPercent(parentHeight, childViewParams, childViewHeight, layoutParams);
 
@@ -119,27 +119,49 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
                 childView.setLayoutParams(layoutParams);
             }
         }
+        updateLayerType(hasShadowChild);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    private void setVerticalMarginPercent(int screenHeight, PercentLayoutViewParams childViewParams, int childViewHeight,LayoutParams layoutParams, int paddingTop, int paddingBottom) {
+    private void updateLayerType(boolean hasShadowChild) {
+        int layerType = hasShadowChild ? View.LAYER_TYPE_SOFTWARE : View.LAYER_TYPE_NONE;
+        if (getLayerType() != layerType) {
+            setLayerType(layerType, null);
+        }
+    }
+
+    private void setPaddingPercent(int screenWidth, int screenHeight, PercentLayoutViewParams childViewParams, View childView) {
+        if (childViewParams.paddingLeftPercent == 0 && childViewParams.paddingRightPercent == 0
+                && childViewParams.paddingTopPercent == 0 && childViewParams.paddingBottomPercent == 0) {
+            return;
+        }
+        int paddingLeft = childViewParams.paddingLeftPercent != 0 ? (int) (screenWidth * childViewParams.paddingLeftPercent) : childView.getPaddingLeft();
+        int paddingRight = childViewParams.paddingRightPercent != 0 ? (int) (screenWidth * childViewParams.paddingRightPercent) : childView.getPaddingRight();
+        int paddingTop = childViewParams.paddingTopPercent != 0 ? (int) (screenHeight * childViewParams.paddingTopPercent) : childView.getPaddingTop();
+        int paddingBottom = childViewParams.paddingBottomPercent != 0 ? (int) (screenHeight * childViewParams.paddingBottomPercent) : childView.getPaddingBottom();
+        childView.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+    }
+
+    private void setVerticalMarginPercent(int screenHeight, PercentLayoutViewParams childViewParams, int childViewHeight, LayoutParams layoutParams, int paddingTop, int paddingBottom) {
         if (childViewParams.marginTopPercent != 0 && childViewParams.marginBottomPercent == 0) {
             layoutParams.verticalBias = (paddingTop + screenHeight * childViewParams.marginTopPercent) / (float) (screenHeight - childViewHeight);
         } else if (childViewParams.marginTopPercent == 0 && childViewParams.marginBottomPercent != 0) {
             layoutParams.verticalBias = 1 - (paddingBottom + screenHeight * childViewParams.marginBottomPercent / (float) (screenHeight - childViewHeight));
         } else if (childViewParams.marginTopPercent != 0 && childViewParams.marginBottomPercent != 0) {
+            layoutParams.height = 0; // 设置width和height为0dp才会生效
             layoutParams.matchConstraintPercentHeight = 1 - ((float) (paddingTop + screenHeight * childViewParams.marginTopPercent + paddingBottom + screenHeight * childViewParams.marginBottomPercent) / (float) screenHeight);
             childViewHeight = (int) (screenHeight * layoutParams.matchConstraintPercentHeight);
             layoutParams.verticalBias = (paddingTop + screenHeight * childViewParams.marginTopPercent) / (float) (screenHeight - childViewHeight);
         }
     }
 
-    private void setHorizontalMarginPercent(int screenWidth, PercentLayoutViewParams childViewParams, int childViewWidth,LayoutParams layoutParams, int paddingLeft, int paddingRight) {
+    private void setHorizontalMarginPercent(int screenWidth, PercentLayoutViewParams childViewParams, int childViewWidth, LayoutParams layoutParams, int paddingLeft, int paddingRight) {
         if (childViewParams.marginLeftPercent != 0 && childViewParams.marginRightPercent == 0) {
             layoutParams.horizontalBias = (paddingLeft + screenWidth * childViewParams.marginLeftPercent) / (float) (screenWidth - childViewWidth);
         } else if (childViewParams.marginLeftPercent == 0 && childViewParams.marginRightPercent != 0) {
             layoutParams.horizontalBias = 1 - ((paddingRight + screenWidth * childViewParams.marginRightPercent) / (float) (screenWidth - childViewWidth));
         } else if (childViewParams.marginLeftPercent != 0 && childViewParams.marginRightPercent != 0) {
+            layoutParams.width = 0; // 设置width和height为0dp才会生效
             layoutParams.matchConstraintPercentWidth = 1 - ((float) (paddingLeft + screenWidth * childViewParams.marginLeftPercent + paddingRight + screenWidth * childViewParams.marginRightPercent) / (float) screenWidth);
             childViewWidth = (int) (screenWidth * layoutParams.matchConstraintPercentWidth);
             layoutParams.horizontalBias = (paddingLeft + screenWidth * childViewParams.marginLeftPercent) / (float) (screenWidth - childViewWidth);
@@ -149,9 +171,7 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
     private int setHeightPercent(int screenHeight, PercentLayoutViewParams childViewParams, int childViewHeight, LayoutParams layoutParams) {
         if (childViewParams.heightPercent != 0) {
             layoutParams.matchConstraintPercentHeight = childViewParams.heightPercent;
-            childViewHeight = (int) (screenHeight * layoutParams.matchConstraintPercentHeight);
-        } else if (childViewParams.marginTopPercent != 0 && childViewParams.marginBottomPercent != 0) {
-            layoutParams.matchConstraintPercentHeight = 1 - childViewParams.marginTopPercent - childViewParams.marginBottomPercent;
+            layoutParams.height = 0; // 设置width和height为0dp才会生效
             childViewHeight = (int) (screenHeight * layoutParams.matchConstraintPercentHeight);
         }
         return childViewHeight;
@@ -160,9 +180,7 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
     private int setWidthPercent(int screenWidth, PercentLayoutViewParams childViewParams, int childViewWidth, LayoutParams layoutParams) {
         if (childViewParams.widthPercent != 0) {
             layoutParams.matchConstraintPercentWidth = childViewParams.widthPercent;
-            childViewWidth = (int) (screenWidth * layoutParams.matchConstraintPercentWidth);
-        } else if (childViewParams.marginLeftPercent != 0 && childViewParams.marginRightPercent != 0) {
-            layoutParams.matchConstraintPercentWidth = 1 - childViewParams.marginLeftPercent - childViewParams.marginRightPercent;
+            layoutParams.width = 0; // 设置width和height为0dp才会生效
             childViewWidth = (int) (screenWidth * layoutParams.matchConstraintPercentWidth);
         }
         return childViewWidth;
@@ -214,59 +232,60 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
     @Override
     protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
         ViewGroup.LayoutParams lp = child.getLayoutParams();
-        boolean ret = false;
-        if (checkLayoutParams(lp)) {
-            PercentLayoutParams elp = (PercentLayoutParams) lp;
-            PercentLayoutParamsData data = elp.getData();
-            if (isInEditMode()) {//预览模式采用裁剪
-                if (data.hasShadow) {
-                    int count = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
-                    shadowPaint.setShadowLayer(data.shadowEvaluation, data.shadowDx, data.shadowDy, data.shadowColor);
-                    shadowPaint.setColor(data.shadowColor);
-                    canvas.drawPath(data.widgetPath, shadowPaint);
-                    shadowPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                    shadowPaint.setColor(Color.WHITE);
-                    canvas.drawPath(data.widgetPath, shadowPaint);
-                    shadowPaint.setXfermode(null);
-                    canvas.restoreToCount(count);
-                }
-                if (data.needClip) {
-                    canvas.save();
-                    canvas.clipPath(data.widgetPath);
-                    ret = super.drawChild(canvas, child, drawingTime);
-                    canvas.restore();
-                } else {
-                    ret = super.drawChild(canvas, child, drawingTime);
-                }
-                return ret;
-            }
-            if (!data.hasShadow && !data.needClip) {
-                return super.drawChild(canvas, child, drawingTime);
-            }
-            //为解决锯齿问题，正式环境采用xfermode
-            if (data.hasShadow) {
-                int count = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
-                shadowPaint.setShadowLayer(data.shadowEvaluation, data.shadowDx, data.shadowDy, data.shadowColor);
-                shadowPaint.setColor(data.shadowColor);
-                canvas.drawPath(data.widgetPath, shadowPaint);
-                shadowPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-                shadowPaint.setColor(Color.WHITE);
-                canvas.drawPath(data.widgetPath, shadowPaint);
-                shadowPaint.setXfermode(null);
-                canvas.restoreToCount(count);
+        if (!checkLayoutParams(lp)) {
+            return super.drawChild(canvas, child, drawingTime);
+        }
 
+        PercentLayoutParams elp = (PercentLayoutParams) lp;
+        PercentLayoutParamsData data = elp.getData();
+        if (isInEditMode()) {//预览模式采用裁剪
+            if (data.hasShadow) {
+                drawShadow(canvas, data);
             }
             if (data.needClip) {
-                int count = canvas.saveLayer(child.getLeft(), child.getTop(), child.getRight(), child.getBottom(), null, Canvas.ALL_SAVE_FLAG);
-                ret = super.drawChild(canvas, child, drawingTime);
-                // PorterDuff.Mode.CLEAR 擦除子控件的四个角，露出圆角效果
-                clipPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                clipPaint.setColor(Color.WHITE);
-                canvas.drawPath(data.clipPath, clipPaint);
-                clipPaint.setXfermode(null);
-                canvas.restoreToCount(count);
+                canvas.save();
+                canvas.clipPath(data.widgetPath);
+                boolean ret = super.drawChild(canvas, child, drawingTime);
+                canvas.restore();
+                return ret;
             }
+            return super.drawChild(canvas, child, drawingTime);
         }
+
+        if (!data.hasShadow && !data.needClip) {
+            return super.drawChild(canvas, child, drawingTime);
+        }
+        //为解决锯齿问题，正式环境采用xfermode
+        if (data.hasShadow) {
+            drawShadow(canvas, data);
+        }
+        if (data.needClip) {
+            return drawClipChild(canvas, child, drawingTime, data);
+        }
+        return super.drawChild(canvas, child, drawingTime);
+    }
+
+    private void drawShadow(Canvas canvas, PercentLayoutParamsData data) {
+        int count = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
+        shadowPaint.setShadowLayer(data.shadowEvaluation, data.shadowDx, data.shadowDy, data.shadowColor);
+        shadowPaint.setColor(data.shadowColor);
+        canvas.drawPath(data.widgetPath, shadowPaint);
+        shadowPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        shadowPaint.setColor(Color.WHITE);
+        canvas.drawPath(data.widgetPath, shadowPaint);
+        shadowPaint.setXfermode(null);
+        canvas.restoreToCount(count);
+    }
+
+    private boolean drawClipChild(Canvas canvas, View child, long drawingTime, PercentLayoutParamsData data) {
+        int count = canvas.saveLayer(child.getLeft(), child.getTop(), child.getRight(), child.getBottom(), null, Canvas.ALL_SAVE_FLAG);
+        boolean ret = super.drawChild(canvas, child, drawingTime);
+        // PorterDuff.Mode.CLEAR 擦除子控件的四个角，露出圆角效果
+        clipPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        clipPaint.setColor(Color.WHITE);
+        canvas.drawPath(data.clipPath, clipPaint);
+        clipPaint.setXfermode(null);
+        canvas.restoreToCount(count);
         return ret;
     }
 }
