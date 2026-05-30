@@ -95,7 +95,6 @@
             app:sub_corner_radius="8dp"
             app:sub_icon_normal_left="@mipmap/icon_phone"
             android:drawablePadding="20dp"
-            app:sub_icon_padding="8dp"
             app:sub_icon_width="24dp"
             app:sub_icon_height="24dp"
             app:sub_icon_with_text="true"
