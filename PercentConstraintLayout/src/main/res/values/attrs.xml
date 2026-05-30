@@ -993,4 +993,121 @@
         <attr name="sub_shadow_evaluation" />
     </declare-styleable>
 
+    <!-- SubButton -->
+    <declare-styleable name="SubButton_Layout">
+
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="sub_corner_radius" />
+        <attr name="sub_corner_radius_top_left" />
+        <attr name="sub_corner_radius_top_right" />
+        <attr name="sub_corner_radius_bottom_left" />
+        <attr name="sub_corner_radius_bottom_right" />
+
+        <!--虚线边框宽度/间隔-->
+        <attr name="sub_border_dash_width" />
+        <attr name="sub_border_dash_gap" />
+
+        <!--边框宽度-->
+        <attr name="sub_border_width_normal" />
+        <attr name="sub_border_width_pressed" />
+        <attr name="sub_border_width_unable" />
+        <attr name="sub_border_width_checked" />
+        <attr name="sub_border_width_selected" />
+
+        <!--边框颜色-->
+        <attr name="sub_border_color_normal" />
+        <attr name="sub_border_color_pressed" />
+        <attr name="sub_border_color_unable" />
+        <attr name="sub_border_color_checked" />
+        <attr name="sub_border_color_selected" />
+
+        <!--背景颜色-->
+        <attr name="sub_background_normal" />
+        <attr name="sub_background_pressed" />
+        <attr name="sub_background_unable" />
+        <attr name="sub_background_checked" />
+        <attr name="sub_background_selected" />
+
+        <!--Gradient相关-->
+        <attr name="sub_gradient_orientation" />
+        <attr name="sub_gradient_type" />
+        <attr name="sub_gradient_radius" />
+        <attr name="sub_gradient_centerX" />
+        <attr name="sub_gradient_centerY" />
+
+        <!--文本颜色-->
+        <attr name="sub_text_color_normal" />
+        <attr name="sub_text_color_pressed" />
+        <attr name="sub_text_color_unable" />
+        <attr name="sub_text_color_checked" />
+        <attr name="sub_text_color_selected" />
+
+        <!--字体样式-->
+        <attr name="sub_text_typeface" />
+
+        <!--是否可用-->
+        <attr name="sub_enabled" />
+
+        <!--图标资源,大小-->
+        <attr name="sub_icon_normal_left" />
+        <attr name="sub_icon_pressed_left" />
+        <attr name="sub_icon_unable_left" />
+        <attr name="sub_icon_checked_left" />
+        <attr name="sub_icon_selected_left" />
+        <attr name="sub_icon_normal_right" />
+        <attr name="sub_icon_pressed_right" />
+        <attr name="sub_icon_unable_right" />
+        <attr name="sub_icon_checked_right" />
+        <attr name="sub_icon_selected_right" />
+        <attr name="sub_icon_normal_top" />
+        <attr name="sub_icon_pressed_top" />
+        <attr name="sub_icon_unable_top" />
+        <attr name="sub_icon_checked_top" />
+        <attr name="sub_icon_selected_top" />
+        <attr name="sub_icon_normal_bottom" />
+        <attr name="sub_icon_pressed_bottom" />
+        <attr name="sub_icon_unable_bottom" />
+        <attr name="sub_icon_checked_bottom" />
+        <attr name="sub_icon_selected_bottom" />
+        <attr name="sub_icon_height_left" />
+        <attr name="sub_icon_width_left" />
+        <attr name="sub_icon_height_bottom" />
+        <attr name="sub_icon_width_bottom" />
+        <attr name="sub_icon_height_top" />
+        <attr name="sub_icon_width_top" />
+        <attr name="sub_icon_height_right" />
+        <attr name="sub_icon_width_right" />
+        <!--原生属性-->
+        <attr name="android:drawableLeft" />
+        <attr name="android:drawableRight" />
+        <attr name="android:drawableBottom" />
+        <attr name="android:drawableTop" />
+        <attr name="android:drawableStart" />
+        <attr name="android:drawableEnd" />
+
+        <!--图标资源,大小,位置(版本兼容保留)-->
+        <attr name="sub_icon_src_normal" />
+        <attr name="sub_icon_src_pressed" />
+        <attr name="sub_icon_src_unable" />
+        <attr name="sub_icon_src_checked" />
+        <attr name="sub_icon_src_selected" />
+        <attr name="sub_icon_height" />
+        <attr name="sub_icon_width" />
+        <attr name="sub_icon_direction" />
+
+        <!--drawable和Text居中-->
+        <attr name="sub_icon_with_text" />
+
+        <!--ripple-->
+        <attr name="sub_ripple" />
+        <attr name="sub_ripple_color" />
+        <attr name="sub_ripple_mask" />
+        <attr name="sub_ripple_mask_style" />
+
+        <!--shadow-->
+        <attr name="sub_shadow_dx" />
+        <attr name="sub_shadow_dy" />
+        <attr name="sub_shadow_color" />
+        <attr name="sub_shadow_evaluation" />
+    </declare-styleable>
 </resources>

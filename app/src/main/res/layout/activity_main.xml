@@ -26,6 +26,12 @@
             android:text="SubTextView" />
 
         <com.github.layout.SubTextView
+            android:id="@+id/bt"
+            style="@style/itemMain"
+            android:layout_marginTop="12dp"
+            android:text="SubButton" />
+
+        <com.github.layout.SubTextView
             android:id="@+id/iv"
             style="@style/itemMain"
             android:layout_marginTop="12dp"

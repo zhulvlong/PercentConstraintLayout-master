@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆角背景" />
+
+        <com.github.layout.SubButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:text="圆角按钮"
+            android:textColor="@android:color/white"
+            app:sub_background_normal="#3F51B5"
+            app:sub_background_pressed="#303F9F"
+            app:sub_corner_radius="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="渐变背景 + 阴影" />
+
+        <com.github.layout.SubButton
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginTop="8dp"
+            android:text="渐变阴影按钮"
+            android:textColor="@android:color/white"
+            app:sub_background_normal="@array/array_l_r"
+            app:sub_corner_radius="12dp"
+            app:sub_shadow_color="#66000000"
+            app:sub_shadow_dx="2dp"
+            app:sub_shadow_dy="4dp"
+            app:sub_shadow_evaluation="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="边框按钮" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <com.github.layout.SubButton
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="边框默认"
+                android:textColor="#FF5722"
+                app:sub_background_normal="@android:color/white"
+                app:sub_border_color_normal="#FF5722"
+                app:sub_border_width_normal="2dp"
+                app:sub_corner_radius="8dp" />
+
+            <com.github.layout.SubButton
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="边框按下"
+                android:textColor="@android:color/white"
+                app:sub_background_normal="#FF5722"
+                app:sub_background_pressed="#E64A19"
+                app:sub_corner_radius="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="图标按钮" />
+
+        <com.github.layout.SubButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:text="图标居中"
+            app:sub_background_normal="#009688"
+            app:sub_background_pressed="#00796B"
+            app:sub_corner_radius="8dp"
+            app:sub_icon_normal_left="@mipmap/icon_phone"
+            android:drawablePadding="20dp"
+            app:sub_icon_padding="8dp"
+            app:sub_icon_width="24dp"
+            app:sub_icon_height="24dp"
+            app:sub_icon_with_text="true"
+            app:sub_text_color_normal="@android:color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="不可用状态" />
+
+        <com.github.layout.SubButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:enabled="true"
+            android:text="不可用按钮"
+            app:sub_background_normal="#689F38"
+            app:sub_background_unable="#9E9E9E"
+            app:sub_corner_radius="8dp"
+            app:sub_text_color_normal="#E81313"
+            app:sub_text_color_unable="#EEEEEE" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Ripple 水波纹" />
+
+        <com.github.layout.SubButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:text="Ripple 按钮"
+            android:textColor="@android:color/white"
+            app:sub_background_normal="#2196F3"
+            app:sub_corner_radius="8dp"
+            app:sub_ripple="true"
+            app:sub_ripple_color="#FFFFFF"
+            app:sub_ripple_mask_style="normal" />
+
+    </LinearLayout>
+</ScrollView>

@@ -32,6 +32,7 @@
         <activity android:name=".CheckedActivity" />
         <activity android:name=".RipperActivity" />
         <activity android:name=".ShadowActivity" />
+        <activity android:name=".SubButtonActivity" />
     </application>
 
 </manifest>

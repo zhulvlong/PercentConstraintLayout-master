@@ -2,12 +2,9 @@ package com.github.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 
-import com.github.app.CheckedActivity;
-import com.github.app.GradientActivity;
-
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.percent).setOnClickListener(this);
         findViewById(R.id.tv).setOnClickListener(this);
+        findViewById(R.id.bt).setOnClickListener(this);
         findViewById(R.id.iv).setOnClickListener(this);
         findViewById(R.id.et).setOnClickListener(this);
         findViewById(R.id.view_group).setOnClickListener(this);
@@ -38,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv:
                 intent = new Intent(this, SubTextViewActivity.class);
+                break;
+            case R.id.bt:
+                intent = new Intent(this, SubButtonActivity.class);
                 break;
             case R.id.iv:
                 intent = new Intent(this, SubImageViewActivity.class);
