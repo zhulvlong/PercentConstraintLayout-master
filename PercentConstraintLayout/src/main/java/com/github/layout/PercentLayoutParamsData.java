@@ -116,24 +116,26 @@ public class PercentLayoutParamsData {
     }
 
     public void initPaths(View v) {
-        widgetRect = new RectF(v.getLeft(),
-                v.getTop(),
-                v.getRight(),
-                v.getBottom());
-
-        widgetPath = new Path();
-        clipPath = new Path();
+        if (!needClip && !hasShadow) {
+            return;
+        }
+        if (widgetRect == null) {
+            widgetRect = new RectF();
+        }
+        if (widgetPath == null) {
+            widgetPath = new Path();
+        } else {
+            widgetPath.reset();
+        }
+        if (clipPath == null) {
+            clipPath = new Path();
+        } else {
+            clipPath.reset();
+        }
+        widgetRect.set(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
         clipPath.addRect(widgetRect, Path.Direction.CCW);
-        clipPath.addRoundRect(
-                widgetRect,
-                rounds,
-                Path.Direction.CW
-        );
-        widgetPath.addRoundRect(
-                widgetRect,
-                rounds,
-                Path.Direction.CW
-        );
+        clipPath.addRoundRect(widgetRect, rounds, Path.Direction.CW);
+        widgetPath.addRoundRect(widgetRect, rounds, Path.Direction.CW);
     }
 
     private static float getPercent(TypedArray array, int index) {

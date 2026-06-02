@@ -12,6 +12,19 @@ public class PercentLayoutViewParams {
     public float paddingTopPercent = 0;
     public float paddingBottomPercent = 0;
 
+    public void reset() {
+        widthPercent = 0;
+        heightPercent = 0;
+        marginLeftPercent = 0;
+        marginRightPercent = 0;
+        marginTopPercent = 0;
+        marginBottomPercent = 0;
+        paddingLeftPercent = 0;
+        paddingRightPercent = 0;
+        paddingTopPercent = 0;
+        paddingBottomPercent = 0;
+    }
+
     public void initParams(PercentLayoutParamsData data) {
         widthPercent = data.layout_widthPercent;
         heightPercent = data.layout_heightPercent;

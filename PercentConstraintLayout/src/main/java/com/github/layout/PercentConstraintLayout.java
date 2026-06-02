@@ -16,6 +16,12 @@ import com.github.layout.helper.SubViewBaseHelper;
 import com.github.layout.iface.RHelper;
 
 public class PercentConstraintLayout extends ConstraintLayout implements RHelper<SubViewBaseHelper> {
+    private static final ThreadLocal<PercentLayoutViewParams> childViewParamsPool = new ThreadLocal<PercentLayoutViewParams>() {
+        @Override
+        protected PercentLayoutViewParams initialValue() {
+            return new PercentLayoutViewParams();
+        }
+    };
     private Paint shadowPaint;
     private Paint clipPaint;
     private SubViewBaseHelper mHelper;
@@ -95,8 +101,9 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
         int parentPaddingTop = getPaddingTop();
         int parentPaddingBottom = getPaddingBottom();
         boolean hasShadowChild = false;
+        PercentLayoutViewParams childViewParams = childViewParamsPool.get();
         for (int i = 0; i < childCount; i++) {
-            PercentLayoutViewParams childViewParams = new PercentLayoutViewParams();
+            childViewParams.reset();
             View childView = getChildAt(i);
             ViewGroup.LayoutParams lp = childView.getLayoutParams();
             int childViewWidth = childView.getMeasuredWidth();
