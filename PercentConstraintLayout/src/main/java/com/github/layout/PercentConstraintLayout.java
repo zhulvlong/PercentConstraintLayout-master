@@ -100,7 +100,6 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
         int parentPaddingRight = getPaddingRight() != 0 ? getPaddingRight() : getPaddingEnd();
         int parentPaddingTop = getPaddingTop();
         int parentPaddingBottom = getPaddingBottom();
-        boolean hasShadowChild = false;
         PercentLayoutViewParams childViewParams = childViewParamsPool.get();
         for (int i = 0; i < childCount; i++) {
             childViewParams.reset();
@@ -111,7 +110,6 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
             if (checkLayoutParams(lp)) {
                 PercentLayoutParams elp = (PercentLayoutParams) lp;
                 PercentLayoutParamsData data = elp.getData();
-                hasShadowChild |= data.hasShadow;
                 childViewParams.initParams(data);
                 ConstraintLayout.LayoutParams childLayoutParams = (ConstraintLayout.LayoutParams) lp;
 
@@ -126,15 +124,7 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
                 childView.setLayoutParams(childLayoutParams);
             }
         }
-        updateLayerType(hasShadowChild);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    private void updateLayerType(boolean hasShadowChild) {
-        int layerType = hasShadowChild ? View.LAYER_TYPE_SOFTWARE : View.LAYER_TYPE_NONE;
-        if (getLayerType() != layerType) {
-            setLayerType(layerType, null);
-        }
     }
 
     private void setPaddingPercent(int parentWidth, int parentHeight, View childView, PercentLayoutViewParams childViewParams) {
