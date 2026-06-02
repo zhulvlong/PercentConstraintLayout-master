@@ -11,7 +11,11 @@ import android.view.View;
 public class PercentLayoutParamsData {
 
     /**
-     * 圆角
+     * 圆角原始值（用于 RTL 恢复）
+     */
+    private final float[] originalRounds;
+    /**
+     * 圆角（RTL 下可能被交换）
      */
     private final float[] rounds;
     int shadowColor;
@@ -80,7 +84,7 @@ public class PercentLayoutParamsData {
             needClip = radius > 0 || roundLT > 0 || roundRT > 0 || roundRB > 0 || roundLB > 0;
         }
         if (radius > 0 && (roundLT == 0 || roundRT == 0 || roundRB == 0 || roundLB == 0)) {
-            rounds = new float[]{
+            originalRounds = new float[]{
                     radius, radius,
                     radius, radius,
                     radius, radius,
@@ -91,27 +95,29 @@ public class PercentLayoutParamsData {
             float rt = roundRT > 0 ? roundRT : radius;
             float rb = roundRB > 0 ? roundRB : radius;
             float lb = roundLB > 0 ? roundLB : radius;
-            rounds = new float[]{
+            originalRounds = new float[]{
                     lt, lt,
                     rt, rt,
                     rb, rb,
                     lb, lb
             };
         } else if (radius == 0 && (roundLT > 0 || roundRT > 0 || roundRB > 0 || roundLB > 0)) {
-            rounds = new float[]{
+            originalRounds = new float[]{
                     roundLT, roundLT,
                     roundRT, roundRT,
                     roundRB, roundRB,
                     roundLB, roundLB
             };
         } else {
-            rounds = new float[]{
+            originalRounds = new float[]{
                     0, 0,
                     0, 0,
                     0, 0,
                     0, 0
             };
         }
+        rounds = new float[8];
+        System.arraycopy(originalRounds, 0, rounds, 0, 8);
         hasShadow = shadowEvaluation > 0;
     }
 
@@ -131,6 +137,22 @@ public class PercentLayoutParamsData {
             clipPath = new Path();
         } else {
             clipPath.reset();
+        }
+        // 从原始值恢复，再根据 RTL 方向决定是否交换左右圆角
+        System.arraycopy(originalRounds, 0, rounds, 0, 8);
+        if (v.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
+            // 交换左上 ↔ 右上
+            float temp0 = rounds[0], temp1 = rounds[1];
+            rounds[0] = rounds[2];
+            rounds[1] = rounds[3];
+            rounds[2] = temp0;
+            rounds[3] = temp1;
+            // 交换左下 ↔ 右下
+            float temp6 = rounds[6], temp7 = rounds[7];
+            rounds[6] = rounds[4];
+            rounds[7] = rounds[5];
+            rounds[4] = temp6;
+            rounds[5] = temp7;
         }
         widgetRect.set(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
         clipPath.addRect(widgetRect, Path.Direction.CCW);

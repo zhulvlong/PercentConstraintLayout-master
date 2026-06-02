@@ -89,7 +89,7 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
         int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
         int parentHeight = MeasureSpec.getSize(heightMeasureSpec);
         if (parentWidthSpecMode == MeasureSpec.AT_MOST) {
-            // 根据需求修改模式，例如：强制使控件充满父控件
+            // 根据需求修改模式，例如：强制使控件充满父控件，强制修改 MeasureSpec 将 AT_MOST → EXACTLY，限制使用场景
             widthMeasureSpec = MeasureSpec.makeMeasureSpec(parentWidth, MeasureSpec.EXACTLY);
         }
         if (parentHeightSpecMode == MeasureSpec.AT_MOST) {
@@ -105,6 +105,9 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
             childViewParams.reset();
             View childView = getChildAt(i);
             ViewGroup.LayoutParams lp = childView.getLayoutParams();
+            // `childView.getMeasuredWidth/getMeasuredHeight()`在 super.onMeasure 之前调用
+            // 在 `super.onMeasure()` 之前调用，子 View 尚未完成测量，获取的是0 或 旧值
+            // 因此需要调用 childView.setLayoutParams(childLayoutParams)，重新给子 View 设置布局参数，会造成多次测量
             int childViewWidth = childView.getMeasuredWidth();
             int childViewHeight = childView.getMeasuredHeight();
             if (checkLayoutParams(lp)) {
@@ -235,9 +238,10 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
 
         PercentLayoutParams elp = (PercentLayoutParams) lp;
         PercentLayoutParamsData data = elp.getData();
-        if (isInEditMode()) {//预览模式采用裁剪
+        boolean isRtl = getLayoutDirection() == LAYOUT_DIRECTION_RTL;
+        if (isInEditMode()) {// 预览模式采用裁剪
             if (data.hasShadow) {
-                drawShadow(canvas, data);
+                drawShadow(canvas, data, isRtl);
             }
             if (data.needClip) {
                 canvas.save();
@@ -252,9 +256,9 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
         if (!data.hasShadow && !data.needClip) {
             return super.drawChild(canvas, child, drawingTime);
         }
-        //为解决锯齿问题，正式环境采用xfermode
+        // 为解决锯齿问题，正式环境采用xfermode
         if (data.hasShadow) {
-            drawShadow(canvas, data);
+            drawShadow(canvas, data, isRtl);
         }
         if (data.needClip) {
             return drawClipChild(canvas, child, drawingTime, data);
@@ -262,9 +266,11 @@ public class PercentConstraintLayout extends ConstraintLayout implements RHelper
         return super.drawChild(canvas, child, drawingTime);
     }
 
-    private void drawShadow(Canvas canvas, PercentLayoutParamsData data) {
+    private void drawShadow(Canvas canvas, PercentLayoutParamsData data, boolean isRtl) {
         int count = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
-        shadowPaint.setShadowLayer(data.shadowEvaluation, data.shadowDx, data.shadowDy, data.shadowColor);
+        // RTL 下反转阴影水平偏移方向
+        float effectiveShadowDx = isRtl ? -data.shadowDx : data.shadowDx;
+        shadowPaint.setShadowLayer(data.shadowEvaluation, effectiveShadowDx, data.shadowDy, data.shadowColor);
         shadowPaint.setColor(data.shadowColor);
         canvas.drawPath(data.widgetPath, shadowPaint);
         shadowPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
